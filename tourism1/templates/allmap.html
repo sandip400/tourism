@@ -1,0 +1,629 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {% load static %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    p {
+      text-align: justify;
+      justify-content: justify;
+    }
+
+    h1 {
+      color: #0c1825;
+      text-align: center;
+      justify-content: center;
+    }
+
+    h2 {
+      color: #1c16cb;
+      text-align: left;
+      justify-content: left;
+    }
+
+    h3 {
+      color: #000000;
+      text-align: left;
+      justify-content: left;
+    }
+    h4 {
+      color: #000000;
+      text-align: left;
+      justify-content: left;
+    }
+
+    li {
+      margin-bottom: 2px;
+      text-align: left;
+      justify-content: left;
+    }
+
+    ul {
+      list-style-type: none;
+      text-align: left;
+      justify-content: left;
+    }
+
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><b>DIFFERENT TYPES OF INDIA MAPS</b></h1><br><br>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>India's Political Map</h1>
+        <h2>States and Union Territories : </h2>
+        <ul>
+          <li>India has 28 states and 8 union territories.</li>
+          <li>The union territories of Jammu and Kashmir, Puducherry, and the National Capital Territory of Delhi have
+            elected governments.</li>
+          <li>The other union territories are directly ruled by the central government.</li>
+          <li>Each state and union territory is divided into administrative districts, which are further divided into
+            tehsils and villages.</li>
+        </ul>
+
+        <h2>Political Structure : </h2>
+        <ul>
+          <li>The states and union territories are based on a linguistic structure established in 1956.</li>
+          <li>Each state and union territory has its own culture, history, festivals, language, and dress.</li>
+        </ul>
+
+        <h2>Other Features : </h2>
+        <ul>
+          <li>India's coastline is 7,517 km long.</li>
+          <li>5,423 km of the coastline is in peninsular India.</li>
+          <li>2,094 km of the coastline is in the Andaman Nicobar and Lakshadweep islands.</li>
+          <li>India is bordered by the Indian Ocean, Arabian Sea, and Bay of Bengal.</li>
+          <li>India is divided into six main zones: Western, Southern, Eastern, Central, Northeastern, and Northern.
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4"><br><img src="{% static 'political.webp'%}" class="img-thumbnail" alt="..."></div>
+    </div><br>
+    <hr><br>
+    <div class="row">
+      <div class="col-sm-4"><br><img src="{% static 'physical.webp'%}" class="img-thumbnail" alt="..."></div>
+      <div class="col-sm-8">
+        <h1>India's Physical Map</h1>
+        <p>A physical map of India depicts the country's natural geographical features, including the Himalayan mountain
+          range, the Indo-Gangetic plains, the Thar Desert, the Western and Eastern Ghats mountain ranges, major rivers
+          like the Ganga, Yamuna, Indus, and Godavari, plateaus, and coastal areas, essentially showcasing the diverse
+          topography of the Indian subcontinent; it distinguishes itself from a political map by focusing on landforms
+          rather than state borders and cities. </p>
+        <h2>Important Points to Remember about a Physical Map of India</h2>
+        <ul>
+          <li><strong>Elevation:</strong> Different colors on the map usually represent different elevation levels,
+            with:
+            <ul>
+              <li>Green for plains</li>
+              <li>Brown for mountains</li>
+              <li>Blue for water bodies</li>
+            </ul>
+          </li>
+          <li><strong>Scale:</strong> The map will be scaled to show the relative size and position of different
+            geographical features.</li>
+          <li><strong>Physiographic Divisions:</strong> A physical map often highlights different physiographic
+            divisions within India, such as:
+            <ul>
+              <li>Northern Mountains</li>
+              <li>Northern Plains</li>
+              <li>Peninsular Plateau</li>
+            </ul>
+          </li>
+        </ul>
+      </div><br>
+      <hr><br>
+      <div class="row">
+        <div class="col-sm-8">
+          <h1>Airways in India</h1>
+          <p>Airways in India play a very important role because of their unmatched speed, long-distance operation, and
+            time-saving lineaments. Air transportation is important as it helps reach the remotest areas, such as
+            forests, deserts, mountains, etc., easily and in a lesser time span. It also helps in difficult situations
+            such as famines, earthquakes, floods, epidemics, etc.</p>
+
+          <p>The first air mail service began in India in <strong>1911</strong>. In <strong>1920</strong>, some
+            aerodromes were built in the country. In <strong>1928</strong>, flying clubs were constructed in some
+            cities.</p>
+
+          <h2>Government Initiatives</h2>
+          <p>Once the airlines began in India, the Government of India set up two different corporations in
+            <strong>1953</strong>:
+          </p>
+          <ul>
+            <li><strong>Air India International</strong> – to cater to international air routes.</li>
+            <li><strong>Indian Airlines</strong> – for domestic air transport.</li>
+          </ul>
+
+          <h2>Revolution in Air Travel</h2>
+          <p>Air travel in India has undergone a revolutionary change ever since private airlines came into the picture.
+          </p>
+
+          <p>Now, the proliferation of private airlines has considerably brought down fares that are now within the
+            reach of common people.</p>
+        </div>
+        <div class="col-sm-4"><br><img src="{% static 'airway.jpg'%}" class="img-thumbnail" alt="..."></div>
+      </div><br>
+      <hr><br>
+      <div class="row">
+        <div class="col-sm-4"><br><img src="{% static 'mineral.png'%}" class="img-thumbnail" alt="..."></div>
+        <div class="col-sm-8">
+          <h1>India's Mineral Resources</h1>
+          <h2>Mineral Resources in India</h2>
+
+          <p>India is one of the world's most naturally endowed lands. It is home to numerous minerals that benefit the
+            country economically. The minerals produced in India constitute one-quarter of the world's most popular
+            mineral resources.</p>
+
+          <p>India is gifted with important mineral resources. The country produces about <strong>89 minerals</strong>,
+            out of which:</p>
+          <ul>
+            <li><strong>52</strong> are non-metallic minerals</li>
+            <li><strong>4</strong> are fuel minerals</li>
+            <li><strong>11</strong> are metallic minerals</li>
+            <li><strong>22</strong> are minor minerals</li>
+          </ul>
+
+          <p>The total value of India's mineral production in the year <strong>2000-2001</strong> stood at <strong>Rs.
+              568070 million</strong>, excluding the value of petroleum and natural gas.</p>
+
+          <h2>India's Mineral Production Rankings</h2>
+          <ul>
+            <li>Largest producer of <strong>mica blocks</strong> in the world.</li>
+            <li>2nd largest producer of <strong>chromite</strong>, with a recent surge in demand.</li>
+            <li>3rd in <strong>coal & lignite</strong> production.</li>
+            <li>2nd in <strong>barites</strong> production.</li>
+            <li>4th in <strong>iron ore</strong> production.</li>
+            <li>5th in <strong>bauxite</strong> and <strong>crude steel</strong> production.</li>
+            <li>7th in <strong>manganese ore</strong> production.</li>
+            <li>8th in <strong>aluminum</strong> production.</li>
+          </ul>
+        </div>
+      </div><br>
+      <hr><br>
+      <div class="row">
+        <div class="col-sm-8">
+          <h1>Population Map of India</h1>
+          <p><strong>Definition:</strong> A population map of India represents the distribution, density, and
+            demographic patterns of people across states and regions.</p>
+
+          <h4>Total Population</h4>
+          <p>Over 1.4 billion people, making India the most populous country (as of 2023).</p>
+
+          <h4>High Population Density Areas</h4>
+          <ul>
+            <li><strong>Uttar Pradesh</strong> – Most populous state (~230 million).</li>
+            <li><strong>Maharashtra, Bihar, West Bengal, and Madhya Pradesh</strong> – Other highly populated states.
+            </li>
+            <li><strong>Delhi (NCR), Kolkata, Mumbai, Chennai, Bengaluru</strong> – Densely populated metro cities.</li>
+          </ul>
+          <h4>Low Population Density Areas</h4>
+          <ul>
+            <li><strong>Arunachal Pradesh, Sikkim, Mizoram, Ladakh</strong> – Sparsely populated due to tough terrain.
+            </li>
+          </ul>
+          <h4>Urban vs. Rural</h4>
+          <p>About 35-40% urban and the rest in rural areas.</p>
+          <h4>Tribal & Remote Populations</h4>
+          <p>Found in Northeast India, Jharkhand, Odisha, and Chhattisgarh.</p>
+          <h4>Growth Trends</h4>
+          <p>Southern states (<strong>Kerala, Tamil Nadu</strong>) have lower birth rates, while northern states
+            (<strong>Bihar, UP</strong>) show high population growth.</p>
+        </div>
+        <div class="col-sm-4"><br><img src="{% static 'POPULATIOn.png'%}" class="img-thumbnail" alt="..."></div>
+      </div><br>
+      <hr><br>
+      <div class="row">
+        <div class="col-sm-4"><br><img src="{% static 'landuse.png' %}" class="img-thumbnail" alt="..."></div>
+        <div class="col-sm-8">
+
+          <h1>Land Use Map of India</h1>
+          <p><strong>Definition:</strong> A land use map of India represents how land is utilized for different
+            purposes, including agriculture, forests, urbanization, and water bodies.</p>
+          <ul>
+            <li>
+              <h4>Agricultural Land</h4>
+              <p>Covers around 60% of India's total land, used for crops like wheat, rice, and pulses.</p>
+            </li>
+
+            <li>
+              <h4>Forests</h4>
+              <p>About 21% of India's land is covered by forests, mainly in states like Madhya Pradesh, Arunachal
+                Pradesh,
+                and Chhattisgarh.</p>
+            </li>
+
+            <li>
+              <h4>Urban Areas</h4>
+              <p>Cities and towns are expanding rapidly, with major urban centers like Delhi, Mumbai, and Bengaluru.</p>
+            </li>
+
+            <li>
+              <h4>Industrial Zones</h4>
+              <p>Located in Gujarat, Maharashtra, Tamil Nadu, and West Bengal, supporting economic growth.</p>
+            </li>
+
+            <li>
+              <h4>Barren Land</h4>
+              <p>Includes deserts, rocky areas, and wastelands, mainly in Rajasthan and Gujarat.</p>
+            </li>
+
+            </li>
+            <h4>Water Bodies</h4>
+            <p>Lakes, rivers, and reservoirs, including the Ganga and Yamuna river basins.</p>
+            </li>
+          </ul>
+        </div><br>
+        <hr><br>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <h1>Physiological Divisions Map of India</h1>
+            <p><strong>Definition:</strong> A physiological divisions map of India categorizes the country based on
+              natural landforms and terrain characteristics.</p>
+
+            <h4>The Northern Mountains</h4>
+            <p>Includes the Himalayas, with high peaks, glaciers, and deep valleys. Acts as a climatic barrier.</p>
+
+            <h4>The Northern Plains</h4>
+            <p>Formed by the Indus, Ganga, and Brahmaputra river systems, highly fertile and densely populated.</p>
+
+            <h4>The Peninsular Plateau</h4>
+            <p>Oldest landmass, includes the Deccan Plateau, Chotanagpur Plateau, and Malwa Plateau. Rich in minerals.
+            </p>
+
+            <h4>The Indian Desert</h4>
+            <p>The Thar Desert in Rajasthan, with sandy terrain, low vegetation, and extreme climate conditions.</p>
+
+            <h4>The Coastal Plains</h4>
+            <p>Western and Eastern Coastal Plains, with fertile soil and major port cities.</p>
+
+            <h4>The Islands</h4>
+            <p>Andaman & Nicobar (volcanic origin) and Lakshadweep (coral atolls), significant for biodiversity.</p>
+          </div>
+          <div class="col-sm-4"><br><img src="{% static 'physiographic.jpg' %}" class="img-thumbnail" alt="..."></div>
+        </div><br>
+        <hr><br>
+        <div class="row">
+          <div class="col-sm-4"><br><img src="{% static 'rainfall.jpg' %}" class="img-thumbnail" alt="..."></div>
+          <div class="col-sm-8">
+
+            <h1>Rainfall Map of India</h1>
+            <p><strong>Definition:</strong> A rainfall map of India shows the distribution of precipitation across
+              different regions, influenced by monsoons, geography, and climate.</p>
+
+            <h4>Monsoon Influence</h4>
+            <p>The Southwest Monsoon (June–September) brings most of India’s rainfall, while the Northeast Monsoon
+              (October–December) affects Tamil Nadu and parts of the east coast.</p>
+
+            <h4>Heavy Rainfall Areas</h4>
+            <p>The Western Ghats, Northeast India (Meghalaya, Assam, Arunachal Pradesh), and parts of the Himalayas
+              receive over 200 cm of rainfall annually.</p>
+
+            <h4>Moderate Rainfall Areas</h4>
+            <p>The Indo-Gangetic Plains, central India, and eastern coastal plains get 100–200 cm annually.</p>
+
+            <h4>Low Rainfall Areas</h4>
+            <p>The Deccan Plateau and interior peninsular regions receive 50–100 cm.</p>
+
+            <h4>Arid & Semi-Arid Regions</h4>
+            <p>The Thar Desert (Rajasthan) and parts of Gujarat get less than 50 cm annually.</p>
+
+            <h4>Cyclonic Influence</h4>
+            <p>Coastal areas, especially in Odisha, West Bengal, and Andhra Pradesh, experience heavy rainfall from
+              tropical cyclones.</p>
+          </div><br>
+          <hr><br>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <h1>Wind Map of India</h1>
+              <p><strong>Definition:</strong> A winds map of India represents the direction, speed, and seasonal
+                variation of winds across the country.</p>
+
+              <h4>Monsoon Winds</h4>
+              <p>The Southwest Monsoon (June–September) brings moisture-laden winds from the Arabian Sea and Bay of
+                Bengal, causing heavy rainfall.</p>
+
+              <h4>Northeast Monsoon</h4>
+              <p>Occurs from October to December, bringing winds from the northeast, affecting Tamil Nadu and the east
+                coast.</p>
+
+              <h4>Western Disturbances</h4>
+              <p>Winds from the Mediterranean region, affecting North India during winter, causing rain and snowfall.
+              </p>
+
+              <h4>Local Winds</h4>
+              <ul>
+                <li><strong>Loo</strong> – Hot, dry winds in North India during summer.</li>
+                <li><strong>Kalbaisakhi</strong> – Thunderstorms in East India (West Bengal, Assam) in pre-monsoon
+                  season.</li>
+                <li><strong>Mango Showers</strong> – Pre-monsoon winds in South India aiding mango ripening.</li>
+              </ul>
+
+              <h4>Cyclonic Winds</h4>
+              <p>Coastal states like Odisha, Andhra Pradesh, and West Bengal frequently experience cyclones from the Bay
+                of Bengal.</p>
+
+              <h4>Trade Winds</h4>
+              <p>Influence maritime weather patterns, impacting fishing and navigation.</p>
+            </div>
+            <div class="col-sm-4"><br><img src="{% static 'wind.png' %}" class="img-thumbnail" alt="..."></div>
+          </div><br>
+          <hr><br>
+          <div class="row">
+            <div class="col-sm-4"><br><img src="{% static 'forest.jpg' %}" class="img-thumbnail" alt="..."></div>
+            <div class="col-sm-8">
+
+              <h1>Forests Map of India</h1>
+              <p><strong>Definition:</strong> A forests map of India shows the distribution and types of forests based
+                on climate, topography, and vegetation.</p>
+
+              <h4>Forest Cover</h4>
+              <p>Around 21.71% of India’s land is covered by forests, classified into different types.</p>
+
+              <h4>Tropical Rainforests</h4>
+              <p>Found in Western Ghats, Andaman & Nicobar Islands, and Northeast India, with dense, evergreen trees.
+              </p>
+
+              <h4>Tropical Deciduous Forests</h4>
+              <p>The most widespread, found in Madhya Pradesh, Chhattisgarh, Jharkhand, Odisha, and parts of Uttar
+                Pradesh.</p>
+
+              <h4>Thorn Forests</h4>
+              <p>Located in Rajasthan, Gujarat, and Deccan Plateau, with drought-resistant vegetation.</p>
+
+              <h4>Mangrove Forests</h4>
+              <p>Found in Sundarbans (West Bengal), Odisha, and Andaman & Nicobar Islands, adapted to coastal
+                conditions.</p>
+
+              <h4>Himalayan Forests</h4>
+              <p>Include coniferous and alpine forests in Jammu & Kashmir, Himachal Pradesh, and Uttarakhand.</p>
+
+              <h4>Protected Areas</h4>
+              <p>Includes national parks, wildlife sanctuaries, and biosphere reserves like Jim Corbett, Kaziranga, and
+                Sundarbans.</p>
+            </div><br>
+            <hr><br>
+
+            <div class="row">
+              <div class="col-sm-8">
+                <h1>Wildlife Map of India</h1>
+                <p><strong>Definition:</strong> A wildlife map of India shows the distribution of animal species,
+                  national parks, wildlife sanctuaries, and biosphere reserves across the country.</p>
+
+                <h4>Biodiversity Hotspots</h4>
+                <p>India has four major biodiversity hotspots – Himalayas, Indo-Burma, Western Ghats, and Sundaland
+                  (Nicobar Islands).</p>
+
+                <h4>National Parks</h4>
+                <p>Over 100 national parks, including:</p>
+                <ul>
+                  <li>Jim Corbett (Uttarakhand)</li>
+                  <li>Kaziranga (Assam)</li>
+                  <li>Sundarbans (West Bengal)</li>
+                  <li>Ranthambore (Rajasthan)</li>
+                </ul>
+
+                <h4>Wildlife Sanctuaries</h4>
+                <p>Over 550 sanctuaries, protecting species like tigers, elephants, and rhinos.</p>
+
+                <h4>Tiger Reserves</h4>
+                <p>53 reserves under Project Tiger, including Bandipur, Kanha, and Sundarbans.</p>
+
+                <h4>Elephant Reserves</h4>
+                <p>Found in Assam, Kerala, Karnataka, and Tamil Nadu.</p>
+
+                <h4>Biosphere Reserves</h4>
+                <p>18 reserves, like Nilgiri, Nanda Devi, and Great Nicobar, preserving ecosystems.</p>
+
+                <h4>Endangered Species</h4>
+                <p>Includes Bengal tiger, Asiatic lion, one-horned rhinoceros, snow leopard, and Gangetic dolphin.</p>
+
+                <h4>Bird Sanctuaries</h4>
+                <p>Some notable bird sanctuaries include:</p>
+                <ul>
+                    <li>Bharatpur (Keoladeo)</li>
+                  <li>Ranganathittu</li>
+                  <li>Chilika Lake</li>
+                </ul>
+                <p>These are home to various migratory birds.</p>
+              </div>
+              <div class="col-sm-4"><br><img src="{% static 'wildlife.jpg' %}" class="img-thumbnail" alt="Wildlife"></div>
+            </div><br>
+            <hr><br>
+            <div class="row">
+              <div class="col-sm-4"><br><img src="{% static 'foodcrops.jpg' %}" class="img-thumbnail" alt="..."></div>
+              <div class="col-sm-8">
+
+                <h1>Food Crops Map of India</h1>
+                <p><strong>Definition:</strong> A food crops map of India shows the distribution of major food crops
+                  grown across different regions based on climate and soil types.</p>
+
+                <h4>Rice</h4>
+                <p>The staple crop of India, grown in:</p>
+                <ul>
+                  <li>West Bengal</li>
+                  <li>Uttar Pradesh</li>
+                  <li>Punjab</li>
+                  <li>Bihar</li>
+                  <li>Odisha</li>
+                  <li>Tamil Nadu</li>
+                </ul>
+                <p>Requires high rainfall and fertile alluvial soil.</p>
+
+                <h4>Wheat</h4>
+                <p>Grown in:</p>
+                <ul>
+                  <li>Punjab</li>
+                  <li>Haryana</li>
+                  <li>Uttar Pradesh</li>
+                  <li>Madhya Pradesh</li>
+                  <li>Rajasthan</li>
+                  <li>Parts of Bihar</li>
+                </ul>
+                <p>Requires cool weather and well-drained loamy soil.</p>
+
+                <h4>Maize</h4>
+                <p>Cultivated in Karnataka, Madhya Pradesh, Uttar Pradesh, Bihar, and Rajasthan. Grows well in moderate
+                  rainfall regions.</p>
+
+                <h4>Millets (Jowar, Bajra, Ragi)</h4>
+                <p>Drought-resistant crops grown in Maharashtra, Karnataka, Rajasthan, and Tamil Nadu.</p>
+              </div><br>
+              <hr><br>
+
+              <div class="row">
+                <div class="col-sm-8">
+                  <h1>Cash Crops Map of India</h1>
+                  <p><strong>Definition:</strong> A cash crops map of India shows the distribution of crops grown for
+                    commercial purposes rather than direct consumption.</p>
+
+                  <h4>Cotton</h4>
+                  <p>Grown in Maharashtra, Gujarat, Madhya Pradesh, Karnataka, Tamil Nadu, Telengana</p>
+                  <p>Requires black soil and a warm climate.</p>
+
+                  <h4>Sugarcane</h4>
+                  <p>Major producers include Uttar Pradesh, Maharashtra, Karnataka, Tamil Nadu, and Bihar. Needs high
+                    rainfall and fertile soil.</p>
+
+                  <h4>Tea</h4>
+                  <p>Grown in Assam, West Bengal (Darjeeling), Kerala, and Tamil Nadu (Nilgiris). Requires cool, humid
+                    climate with well-drained soil.</p>
+
+                  <h4>Coffee</h4>
+                  <p>Mainly cultivated in Karnataka, Kerala, and Tamil Nadu in hilly regions with high rainfall.</p>
+
+                  <h4>Jute</h4>
+                  <p>Grown in West Bengal, Bihar, Assam, Odisha.</p>
+                  <p>Requires humid climate and alluvial soil.</p>
+
+                  <h4>Tobacco</h4>
+                  <p>Grown in Andhra Pradesh, Gujarat, Karnataka, and Uttar Pradesh. Needs a dry climate.</p>
+
+                  <h4>Rubber</h4>
+                  <p>Cultivated in Kerala, Tamil Nadu, Karnataka, and Tripura. Requires tropical, humid conditions.</p>
+
+                  <h4>Spices</h4>
+                  <p>Black pepper, cardamom, cloves, and cinnamon are mainly produced in Kerala, Karnataka, and Tamil
+                    Nadu.</p>
+                </div>
+                <div class="col-sm-4"><br><img src="{% static 'cash.jpg'%}" class="img-thumbnail" alt="..."></div>
+              </div><br>
+              <hr><br>
+              <div class="row">
+                <div class="col-sm-4"><br><img src="...." class="img-thumbnail" alt="..."></div>
+                <div class="col-sm-8">
+
+                  <h1>Industries Map of India</h1>
+                  <p><strong>Definition:</strong> An industries map of India highlights major industrial regions,
+                    showing the distribution of key manufacturing and production hubs.</p>
+
+                  <h2>Major Industrial Regions</h2>
+                    <p><strong>Mumbai-Pune Industrial Belt:</strong> Maharashtra; includes textiles, automobiles, chemicals, and electronics.</p>
+                    <p><strong>Delhi-NCR Industrial Region:</strong> Covers Delhi, Gurugram, Noida; specializes in IT, electronics, automobiles, and consumer goods.</p>
+                    <p><strong>Kolkata-Hooghly Industrial Region:</strong> West Bengal; known for jute, iron & steel, and heavy engineering.</p>
+                    <p><strong>Bengaluru-Chennai Industrial Corridor:</strong> Karnataka & Tamil Nadu; hub for IT, aerospace, and automobile industries.</p>
+                    <p><strong>Ahmedabad-Vadodara Industrial Belt:</strong> Gujarat; famous for petrochemicals, textiles, and pharmaceuticals.</p>
+
+                  <h2>Key Industries</h2>
+                    <p><strong>Iron & Steel:</strong> Jamshedpur (Tata Steel), Bhilai, Rourkela, Bokaro.</p>
+                    <p><strong>Textiles:</strong> Surat, Mumbai, Coimbatore, Ludhiana.</p>
+                    <p><strong>Automobiles:</strong> Chennai, Pune, Gurugram, Sanand (Gujarat).</p>
+                    <p><strong>Petrochemicals & Refineries:</strong> Jamnagar (Reliance), Mathura, Vadodara.</p>
+                    <p><strong>IT & Software:</strong> Bengaluru, Hyderabad, Pune.</p>
+                </div><br>
+                <hr><br>
+
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h1>Industries Map of India</h1>
+
+                    <h2>Textile Industry</h2>
+                    <h3>Major Centers:</h3>
+                    <p>Mumbai (Maharashtra), Ahmedabad (Gujarat), Coimbatore (Tamil Nadu), Surat (Gujarat), Ludhiana (Punjab)</p>
+                    <h3>Types:</h3>
+                    <ul>
+                      <li><strong>Cotton Textiles:</strong> Gujarat, Maharashtra, Tamil Nadu.</li>
+                      <li><strong>Silk Textiles:</strong> Karnataka, West Bengal, Assam.</li>
+                      <li><strong>Woolen Textiles:</strong> Punjab, Jammu & Kashmir, Rajasthan.</li>
+                      <li><strong>Jute Industry:</strong> West Bengal (Kolkata), Bihar, Assam, Odisha.</li>
+                    </ul>
+
+                    <h2>Sugar Industry</h2>
+                    <h3>Major States:</h3>
+                    <p>Uttar Pradesh, Maharashtra, Karnataka, Tamil Nadu, Bihar, Andhra Pradesh</p>
+                    <h3>Key Locations in Uttar Pradesh:</h3>
+                    <p>Meerut, Muzaffarnagar, Saharanpur</p>
+
+                    <h2>Iron & Steel Industry</h2>
+                    <h3>Key Locations:</h3>
+                    <p>Jamshedpur (Tata Steel), Bhilai, Rourkela, Bokaro, Durgapur</p>
+
+                    <h2>Cement Industry</h2>
+                    <h3>Main States:</h3>
+                    <p>Rajasthan, Madhya Pradesh, Andhra Pradesh, Gujarat, Tamil Nadu</p>
+
+                    <h2>Petrochemical & Refinery Industry</h2>
+                    <h3>Major Hubs:</h3>
+                    <p>Jamnagar (Gujarat), Mumbai, Mathura, Chennai, Haldia (West Bengal)</p>
+                  </div>
+                  <div class="col-sm-4"><br><img src="{% static 'sugar.jpg'%}" class="img-thumbnail" alt="..."></div>
+                </div><br>
+                <hr><br>
+                <div class="row">
+                  <div class="col-sm-4"><br><img src="{% static 'nationalhighway.jpg'%}" class="img-thumbnail" alt="..."></div>
+                  <div class="col-sm-8">
+
+                    <h1>National Highways Map of India</h1>
+
+                    <h4>Definition</h4>
+                    <p>A national highways map of India shows the network of major roads connecting cities, states,
+                      and important trade routes.</p>
+
+                    <h4>Total Length</h4>
+                    <p>Over 1.46 lakh km of highways managed by the National Highways Authority of India (NHAI).</p>
+
+                    <h4>Golden Quadrilateral (GQ)</h4>
+                    <p>Connects Delhi, Mumbai, Chennai, and Kolkata (5,846 km), boosting trade and transport.</p>
+
+                    <h4>North-South & East-West Corridor</h4>
+                    <ul>
+                      <li><strong>North-South:</strong> Kanyakumari to Srinagar – 4,000 km.</li>
+                      <li><strong>East-West:</strong> Silchar to Porbandar – 3,300 km.</li>
+                    </ul>
+
+                    <h2>Major Highways</h2>
+                    <ul>
+                      <li><strong>NH-44:</strong> Longest highway (Kashmir to Kanyakumari).</li>
+                      <li><strong>NH-16:</strong> Connects Kolkata to Chennai.</li>
+                      <li><strong>NH-48:</strong> Links Delhi to Mumbai.</li>
+                      <li><strong>NH-27:</strong> Longest east-west highway from Gujarat to Assam.</li>
+                    </ul>
+
+                    <h2>Expressways</h2>
+                    <ul>
+                      <li>Delhi-Mumbai Expressway</li>
+                      <li>Yamuna Expressway</li>
+                      <li>Mumbai-Pune Expressway</li>
+                    </ul>
+                  </div><br>
+                  <hr><br>
+                  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous"></script>
+</body>
+{% endblock %}
+</html>

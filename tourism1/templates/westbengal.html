@@ -1,0 +1,2404 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+  <title>West Bengal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  {% load static %}
+  <style>
+    .nav-item{
+      font-size: 2.4vh;
+      font-weight: 80;
+      text-align: center;
+    }
+    .wb {
+      font-size: 9vw;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      border-spacing: 0;
+      border: 1px solid #ddd;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      font-size: 1.5vw;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+  
+    {% comment %} .dropbtn {
+      text-align: center;
+      font-weight: 900;
+      background: orangered;
+      padding: 10px;
+      border-radius: 20px;
+      width: 60%;
+    } {% endcomment %}
+
+    p,
+    li,
+    .text {
+      font-size: 1.5vw;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 600;
+    }
+
+    h4 {
+      font-weight: 900;
+    }
+
+    img {
+      border-radius: 10px;
+      display: block;
+      margin: auto;
+    }
+
+    @media screen and (max-width: 850px) {
+
+      p,
+      li,
+      .text,
+      td,
+      th {
+        font-size: 2vw;
+        ;
+      }
+
+    }
+
+    @media screen and (max-width: 500px) {
+
+      p,
+      li,
+      .text,
+      td,
+      th {
+        font-size: 4.5vw;
+        ;
+      }
+
+    }
+    .dropbtn {
+      background-color: #3498DB;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #2980B9;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown a:hover {background-color: #ddd;}
+    
+    .show {display: block;}
+    
+    .trip {
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color:rgb(231, 36, 36);
+      color: white;
+      border: none;
+      border-radius: 5px;
+  }
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+  }
+  .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 40%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-align: center;
+  }
+  .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .trip-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+  }
+  .trip-options a {
+      display: block;
+      width: 120px;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+  }
+  </style>
+
+</head>
+
+<body>
+  <!-- <h2>Carousel Example</h2> -->
+   <div style="">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+  
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+  
+        <div class="item active">
+          <img src="{% static 'darjeelingwlp.jpg' %}" alt="Darjeeling" style="width:100%; height: 50vw;">
+          <div class="carousel-caption">
+            <h3 style="font-size: 5vw;">Darjeeling</h3>
+            <p>We love the mountains and senic beauty!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static 'victoriawlp.jpg' %}" alt="Chicago" style="width:100%;height: 50vw;">
+          <div class="carousel-caption">
+            <h3 style="font-size: 5vw;">Victoria Memorial</h3>
+            <p>The amazing architecture and history!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static 'howrahbridgewlp.jpg' %}" alt="Howrah Bridge" style="width:100%;height: 50vw;">
+          <div class="carousel-caption">
+            <h3 style="font-size: 5vw;">Howrah Bridge</h3>
+            <p>We love the Big Apple!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static 'Dighawlp2.png' %}" alt="Digha" style="width:100%;height: 50vw;">
+          <div class="carousel-caption">
+            <h3 style="font-size: 5vw;">Digha</h3>
+            <p>We love the beach!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static 'teegardenwlp.jpg' %}" alt="Tea Garden" style="width:100%;height: 50vw;">
+          <div class="carousel-caption">
+            <h3 style="font-size: 5vw;">Tea Garden</h3>
+            <p>We love the smell of the tea gardens!</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+   </div>
+  
+
+  <div class="container">
+    <br><br>
+    <h1 class="wb"> WEST BENGAL</h1><br>
+    <div class="container">
+      <div class="row">
+      <div class="col-sm-6">
+        <img src="{% static 'westbengal-map.jpg' %}" alt="" style="height:700px; width: -webkit-fill-available;">
+
+      </div>
+      <div class="col-sm-6">
+        <h1>About</h1>
+        <h1>West Bengal: The Cultural & Historical Heart of India</h1>
+        <p class="text">West Bengal is a diverse and vibrant state in eastern India, known for its rich history,
+        cultural heritage,
+        literature, festivals, art, and natural beauty. It is the gateway to the Northeast and a key center for
+        politics, economy, and education.</p>
+
+        <ul>
+        <li>Location -- Eastern India</li>
+        <li>Capital -- Kolkata</li>
+        <li>Official Language -- Bengali</li>
+        <li>Area -- 88,752 sq. km</li>
+        <li>Population -- ~100 million (4th most populous state in India)</li>
+        <li>Borders -- Jharkhand, Bihar, Odisha, Assam, Sikkim & International borders with Bangladesh, Nepal,
+          Bhutan</li>
+        <li>Major Rivers -- Ganges (Hooghly), Teesta, Subarnarekha, Damodar</li>
+        <li>Major Festivals -- Durga Puja, Kali Puja, Saraswati Puja, Eid, Christmas, Poila Boishakh, Rath Yatra
+        </li>
+        <li>State Animal -- Fishing Cat</li>
+        <li>State Flower -- Night-flowering Jasmine (Shiuli)</li>
+        <li>State Tree -- Chatim Tree (Devil's Tree)</li>
+        <li>State Bird -- White-breasted Kingfisher</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <div>
+      <h1>📌 Divisions & Districts of West Bengal</h1>
+      <br>
+      <div style="overflow-x:auto;">
+      <table>
+        <tr>
+        <th>Division</th>
+        <th>Districts</th>
+        <th>Key Highlights</th>
+        </tr>
+        <tr>
+        <td>Presidency Division</td>
+        <td>1. Kolkata 2. Howrah 3. Hooghly 4. North 24 Parganas 5. South 24 Parganas 6. Purba Medinipur 7. Paschim
+          Medinipur 8. Jhargram</td>
+        <td>Kolkata (State Capital), Sunderbans, Industrial Hubs, Beaches (Digha, Mandarmani)</td>
+        </tr>
+        <tr>
+        <td>Medinipur Division</td>
+        <td>9. Bankura 10. Purulia</td>
+        <td>Terracotta Temples, Chhau Dance, Ajodhya Hills</td>
+        </tr>
+        <tr>
+        <td>Burdwan Division</td>
+        <td>11. Purba Bardhaman 12. Paschim Bardhaman 13. Birbhum</td>
+        <td>Shantiniketan (Tagore's Visva-Bharati), Coal & Steel Industry</td>
+        </tr>
+        <tr>
+        <td>Malda Division</td>
+        <td>14. Murshidabad 15. Malda 16. Uttar Dinajpur 17. Dakshin Dinajpur</td>
+        <td>Hazarduari Palace, Gour, Mango Orchards</td>
+        </tr>
+        <tr>
+        <td>Jalpaiguri Division</td>
+        <td>18. Darjeeling 19. Kalimpong 20. Jalpaiguri 21. Alipurduar 22. Cooch Behar 23. South Dinajpur</td>
+        <td>Darjeeling Tea, Toy Train, Wildlife (Dooars, Gorumara, Jaldapara)</td>
+        </tr>
+
+      </table>
+      </div>
+      <br><br>
+      <h1>🔹 Major Highlights of Some Key Districts</h1><br><br>
+      <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+        <ul>
+          <li><b>Kolkata --</b> Capital of West Bengal, cultural & economic hub.</li>
+          <li><b>Darjeeling --</b> Famous for its tea gardens, Toy Train, and scenic Himalayan views.</li>
+          <li><b>Murshidabad --</b> Historical town with Hazarduari Palace and Nawabi heritage.</li>
+          <li><b>North & South 24 Parganas --</b> Home to the Sundarbans, the world's largest mangrove forest.</li>
+          <li><b>Hooghly & Howrah --</b> Industrial areas, historic Bandel Church, and the Howrah Bridge.</li>
+          <li><b>Bardhaman (Burdwan) --</b> Known for agriculture and coal-rich Durgapur & Asansol.</li>
+          <li><b>Birbhum --</b> Shantiniketan, Baul music, and famous Poush Mela.</li>
+          <li><b>Malda --</b> Mango orchards, ruins of Gour & Pandua.</li>
+          <li><b>Bankura & Purulia --</b> Famous for terracotta art, Chhau dance, and Ajodhya Hills.</li>
+        </ul>
+        </div>
+        <div class="col-sm-6">
+        <img src="{% static 'westbengal-map.jpg' %}" alt="" style="height:450px;width: -webkit-fill-available;">
+
+        </div>
+      </div>
+      </div>
+    </div><br><br>
+    <div>
+      <button class="trip" id="openModal">Let's go on a trip</button>
+    
+    </div>
+    <div id="tripModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select Your Trip</h2>
+            <button type="button" class="btn btn-warning" style="margin-bottom: 8px;color:black; border-radius: 5px;" onclick="location.href='{% url 'wb_7days' %}'" >7 days trip</button><br>
+            <button type="button" class="btn btn-warning" style="margin-bottom: 8px;color:black; border-radius: 5px;" onclick="location.href='{% url 'wb_12days' %}'" >12 days trip</button>
+        </div>
+    </div>
+    <br><br>
+    <script>
+        var modal = document.getElementById("tripModal");
+        var btn = document.getElementById("openModal");
+        var span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    
+    <br><br>
+    <div class="container">
+      <ul class="nav nav-tabs">
+      <li class="nav-item"><a data-toggle="tab" href="#wbculture"> Culture</a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbtradition "> Tradition</a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbfestivals"> Festivals </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbfood"> Foods </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbhistory"> History </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbartacraft"> Art and Craft </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbseason"> Season to Visit </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbtourist"> Tourist Spots </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbwild"> Wildlife & Crops </a></li>
+      <li class="nav-item"><a data-toggle="tab" href="#wbedu"> Institutions </a></li>
+      </ul>
+
+      <div class="tab-content">
+      <div id="wbculture" class="tab-pane fade in active" style="background-color: white;">
+        <h1>Culture of West Bengal</h1>
+        <p class="text">West Bengal has a rich and diverse culture, shaped by its history, literature, art, music,
+        festivals, and
+        traditions. Here's an overview of some key aspects of its culture:</p>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+
+          <h3>1. Language</h3>
+          <ul>
+            <li>Bengali (Bangla) is the official language and a major part of the cultural identity of West
+            Bengal. It's one of the most spoken languages in the world and has a deep literary heritage, with
+            famous writers like Rabindranath Tagore, Sarat Chandra Chattopadhyay, and Kazi Nazrul Islam.</li>
+          </ul>
+          </div>
+          <div class="col-sm-4">
+          <img src="{% static 'bang.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+          </div>
+
+        </div>
+        </div><br>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+          <h3>2. Literature</h3>
+          <ul>
+            <li>West Bengal has a renowned literary tradition, particularly in poetry and prose. Rabindranath
+            Tagore, the first non-European Nobel laureate in literature, is one of the most significant figures,
+            with his works spanning poetry, music, and art.</li>
+            <li>Kazi Nazrul Islam, known as the "Rebel Poet," is also a major figure in Bengali literature.</li>
+          </ul>
+          </div>
+          <div class="col-sm-4">
+          <img src="{% static 'lit.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+          </div>
+
+        </div>
+        </div><br>
+        <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+          <img src="{% static 'art.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+          </div>
+          <div class="col-sm-8">
+
+          <h3>3. Art and Craft</h3>
+          <ul>
+            <li>The state is known for its diverse range of art forms, from Madhubani paintings to Pattachitra.
+            Bengal School of Art, founded in the late 19th century, had a significant impact on modern Indian
+            art.</li>
+            <li>Sarees like Tant, Baluchari, and Kanjivaram are traditional wear, known for their intricate
+            designs.</li>
+          </ul>
+          </div>
+        </div>
+        </div><br>
+        <div class="container">
+        <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'music.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+                <h3>4. Music</h3>
+                <ul>
+                  <li> Rabindra Sangeet, or songs written by Tagore, plays an integral role in the culture.</li>
+                  <li>Nazrul Geeti, songs composed by Nazrul Islam, are also popular.</li>
+                  <li>Classical music (both Hindustani and Carnatic) and Baul music (folk) are distinctive to the
+                  region.</li>
+                  <li>The Jatra (traditional Bengali folk theatre) and Kirtan (devotional chanting) are widely
+                  practiced.</li>
+                </ul>
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>5. Dance</h3>
+                <ul>
+                  <li>Rabindra Nritya is a classical dance form based on Tagore's songs.</li>
+                  <li>Chhau dance, a martial and tribal art, is another unique dance style from the region.</li>
+                  <li>Folk dances like Alkap and Bhoota are also celebrated during festivals.</li>
+                </ul>
+                <h3>6. Cuisine</h3>
+                <ul>
+                  <li>Bengali cuisine is famous for its fish (especially Hilsa), rice, and sweets like Rasgulla,
+                  Sandesh, Mishti Doi (sweetened yogurt), and Patishapta.</li>
+                  <li>Mustard oil and spices like Panch Phoron (a five-spice blend) are staples in Bengali cooking.</li>
+                  <li>Street food is also popular, such as Phuchka (Pani Puri) and Kathi rolls.</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'chau.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'theater.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>7. Theatre and Cinema</h3>
+                <ul>
+                  <li>Bengali theatre has a rich tradition, with notable personalities like Satyajit Ray, Uttam Kumar,
+                  and Sharmila Tagore.</li>
+                  <li>Bengali Cinema has an international reputation, thanks to filmmakers like Satyajit Ray, Ritwik
+                  Ghatak, and Mrinal Sen, who made contributions to world cinema.</li>
+                </ul>
+                <h3>8. Architecture</h3>
+                <ul>
+                  <li> West Bengal's architectural style blends colonial, traditional Bengali, and Islamic influences.
+                  Notable structures include the Victoria Memorial, Dakshineswar Kali Temple, and the Indian Museum in
+                  Kolkata.</li>
+                </ul>
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'religion.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>9. Religious Diversity</h3>
+                <ul>
+                  <li>The state is home to a variety of religions, with Hinduism, Islam, Christianity, and Buddhism
+                  having a significant presence. This diversity is reflected in the state's festivals, rituals, and
+                  cultural practices.The state is home to a variety of religions, with Hinduism, Islam, Christianity,
+                  and Buddhism having a significant presence. This diversity is reflected in the state's festivals,
+                  rituals, and cultural practices.</li>
+                </ul>
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>10. Folk Traditions</h3>
+                <ul>
+                  <li>West Bengal is famous for its rich folk traditions, including Jhumur, Baul songs, and Bhatiali
+                  (river folk songs).</li>
+                  <li>Rath Yatra (chariot procession) is another vibrant tradition celebrated in the region.</li>
+
+                </ul>
+                <h3>11. Philosophy</h3>
+                <ul>
+                  <li>The Bengal Renaissance in the 19th century, led by intellectuals like Ishwar Chandra Vidyasagar
+                  and Rammohun Roy, focused on reforming society and advocating for social justice, education, and
+                  women's rights.</li>
+
+                </ul>
+                <h3>12. Handicrafts</h3>
+                <ul>
+                  <li>West Bengal is known for its handicrafts such as Kantha embroidery, Sundari, Mati (pottery), and
+                  Sholapith craft (made from the shola plant).</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'phi.jpg' %}" alt="" style="height:300px;width: 200px;">
+
+                </div>
+              </div>
+              </div><br>
+              <p>West Bengal's culture is deeply rooted in its history, and it continues to evolve while maintaining a close
+              connection to its heritage. It's a region where modernity and tradition coexist beautifully!</p><br><br>
+            </div>
+            <div id="wbtradition" class="tab-pane fade in active" style="background-color: white;">
+              <h1>Tradition of West Bengal</h1>
+              <p>West Bengal has a rich and diverse tradition deeply rooted in its history, culture, and social practices.
+              Here's an overview of some key traditional aspects of the state:</p>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>1. Clothing Tradition</h3>
+                <h4>Men</h4>
+                <ul>
+                  <li><b>Dhoti and Kurta:</b> Traditional Bengali men wear white or cream-colored dhoti with a kurta,
+                  especially during religious ceremonies, weddings, and festivals.</li>
+                  <li><b>Panjabi and Pajama:</b> Worn for special occasions.</li>
+                </ul>
+                <h4>Women</h4>
+                <ul>
+                  <li><b>Saree:</b> Bengali women traditionally wear sarees like Tant, Baluchari, Garad, and Kantha.
+                  During
+                  Durga Puja, white sarees with red borders are commonly worn.</li>
+                  <li><b>Shakha and Pola:</b> Married Bengali women wear Shakha (white conch bangles) and Pola (red
+                  coral
+                  bangles) as a symbol of their marital status.</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'cloth.jpg' %}" alt="" style="height:250px;width: 200px;">
+
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+                <h3>2. Wedding Traditions</h3>
+                <ul>
+                  <li><b>Aiburo Bhaat:</b> The last meal for the bride/groom as an unmarried person, given by family and
+                  friends.</li>
+                  <li><b>Saat Paak & Subho Drishti:</b> The bride is lifted and carried around the groom seven times
+                  before
+                  making eye contact for the first time.</li>
+                  <li><b>Sindoor Daan:</b> The groom applies sindoor (vermillion) on the bride's forehead, symbolizing
+                  marriage.</li>
+                  <li><b>Basar Ghar:</b> Post-wedding celebration night where the couple stays awake with family and
+                  friends.
+                  </li>
+                  <li><b>Bashi Biye: </b>The groom gifts a saree to his wife the next morning, marking the completion of
+                  the
+                  marriage rituals.</li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'wedding.jpg' %}" alt="" style="height:250px;width: 200px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'dance.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+                </div>
+              <div class="col-sm-8">
+
+                <h3>3. Music & Dance Traditions</h3>
+                <ul>
+                  <li><b>Rabindra Sangeet:</b> Songs written and composed by Rabindranath Tagore are an integral part of
+                    Bengali culture.</li>
+                  <li><b>Nazrul Geeti:</b> Patriotic and devotional songs composed by Kazi Nazrul Islam.</li>
+                  <li><b>Baul Music:</b> A folk music tradition performed by wandering Baul singers with instruments
+                    like the
+                    ektara.</li>
+                  <li><b>Chhau Dance:</b> A traditional folk dance from Purulia with elaborate masks and martial art
+                    influences.</li>
+                </ul>
+
+              </div>
+
+            </div>
+          </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+              <img src="{% static 'book.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+
+
+              <h3>4. Social & Religious Traditions</h3>
+              <ul>
+                <li> <b>Bengali Adda:</b> A social gathering where people discuss politics, literature, and everyday
+                life,
+                usually over a cup of tea and snacks.</li>
+                <li><b>Books & Literature:</b> West Bengal has a deep literary tradition, and Book Fair (Boi Mela) is
+                a huge
+                cultural event.</li>
+                <li><b>Nabanna (Harvest Festival):</b> Celebrated in rural Bengal to mark the new rice harvest,
+                accompanied
+                by folk songs and dance.</li>
+              </ul>
+              </div>
+
+            </div>
+            </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+              <h3>5. Architectural & Handicraft Traditions</h3>
+              <ul>
+                <li><b>Terracotta Temples:</b> Bishnupur is famous for its stunning terracotta temples with intricate
+                carvings.</li>
+                <li><b>Pattachitra Painting:</b> Traditional scroll paintings with mythological themes.</li>
+                <li><b>Kantha Embroidery:</b> Hand-stitched embroidery on sarees, quilts, and dupattas.</li>
+                <li><b>Sholapith Art:</b> Intricate sculptures made from the soft, white pith of the shola plant, used
+                in
+                Durga Puja decorations.</li>
+              </ul>
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'arch.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+            </div><br>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+              <h3>6. Sports & Games</h3>
+              <ul>
+                <li><b>Football:</b> West Bengal is crazy about football, with clubs like Mohun Bagan, East Bengal,
+                and
+                Mohammedan Sporting being legendary.</li>
+                <li><b>Kabaddi & Kho-Kho:</b> Traditional rural games played widely.</li>
+                <li><b>Boat Racing:</b> A traditional sport, especially in rural Bengal during monsoon festivals.</li>
+              </ul>
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'foot1.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+            </div>
+            <br>
+            <p>West Bengal's traditions beautifully combine history, art, food, music, and festivals, making it one of the
+            most culturally vibrant states in India.</p><br><br>
+          </div>
+          <div id="wbfestivals" class="tab-pane fade in active" style="background-color: white;">
+            <h1>Festivals of West Bengal</h1>
+            <p>West Bengal is known for its vibrant and diverse festivals, which reflect its rich cultural heritage,
+            religious harmony, and artistic traditions. Here's a list of some of the major festivals celebrated in the
+            state:</p>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+              <h3>1. Durga Puja (Biggest Festival of Bengal)</h3>
+              <ul>
+                <li>The most significant festival, celebrated with grand idols, artistic pandals, cultural
+                performances, and processions.</li>
+                <li>The festival lasts 10 days, with Maha Saptami, Maha Ashtami, Maha Navami, and Vijayadashami being
+                the most important days.</li>
+                <li>Sindoor Khela (vermillion play) is a tradition where married women smear sindoor on each other.
+                </li>
+                <li>Huge Visarjan (immersion) processions take place on the last day.</li>
+              </ul>
+              <p><b>📍 Time: September - October (Sharad Navratri)</b></p>
+
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'durga1.jpg' %}" alt="" style="height:230px;width: 200px;">
+
+              </div>
+
+            </div>
+            </div><br>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+              <img src="{% static 'kali.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+              <h3>2. Kali Puja & Diwali</h3>
+              <ul>
+                <li>Unlike other states that celebrate Lakshmi Puja, Bengalis worship Goddess Kali on Diwali night.
+                </li>
+                <li>The state is illuminated with diyas, fireworks, and pandals.</li>
+                <li>Famous places: Dakshineswar Kali Temple, Kalighat Temple.</li>
+              </ul>
+              <p><b>📍 Time: October - November</b></p>
+
+              </div>
+
+            </div>
+            </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+              <h3>3. Poila Boishakh (Bengali New Year)</h3>
+              <ul>
+                <li>Marks the Bengali New Year (1st Baisakh) and is widely celebrated by traders with Haalkhata (new
+                accounting books).</li>
+                <li>People wear new clothes, visit temples, and enjoy cultural events.</li>
+                <li>Special meals include Panta Bhat (fermented rice), Ilish (Hilsa fish), sweets, and Mishti Doi.
+                </li>
+              </ul>
+              <p><b>📍 Time: April 14 - 15</b></p>
+
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'poila.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+            </div><br>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+              <img src="{% static 'saras.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+              <h3>4. Saraswati Puja</h3>
+              <ul>
+                <li>Celebrated in schools, colleges, and homes, dedicated to Goddess Saraswati, the goddess of wisdom.
+                </li>
+                <li>Students place their books and pens near the idol for blessings.</li>
+                <li>Girls wear yellow sarees, and young people celebrate this as Bengali Valentine's Day.</li>
+              </ul>
+              <p><b>📍 Time: January - February (Vasant Panchami)</b></p>
+
+              </div>
+
+            </div>
+            </div>
+            <div class="container">
+            <div class= "row">
+              <div class="col-sm-8">
+
+              <h3>5. Jamai Shashti</h3>
+              <ul>
+                <li>A unique Bengali tradition where mothers-in-law treat their sons-in-law (jamai) with a lavish
+                feast.</li>
+                <li>Special dishes include Hilsa fish, Prawn Malai Curry, Mutton Kosha, and Mishti Doi.</li>
+              </ul>
+              <p><b>📍 Time: May - June</b></p>
+              <h3>6. Rath Yatra</h3>
+              <ul>
+                <li>The Mahesh Rath Yatra (Hooghly) is the second-oldest chariot festival in India after Puri.</li>
+                <li>Huge processions of Lord Jagannath's chariot are taken out, attracting thousands of devotees.</li>
+              </ul>
+              <p><b>📍 Time: June - July</b></p>
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'roth.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+            </div><br>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+              <img src="{% static 'bhai.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+              <h3>7. Bhai Phonta (Bhai Dooj)</h3>
+              <ul>
+                <li>Sisters apply tilak (phonta) on their brothers' foreheads and pray for their long life.</li>
+                <li>Brothers give gifts to their sisters.</li>
+              </ul>
+              <p><b>📍 Time: October - November</b></p>
+              <h3>8. Chhath Puja</h3>
+              <ul>
+                <li>Though mainly a Bihar festival, it is celebrated in Asansol, Durgapur, and Kolkata.</li>
+                <li>Devotees worship Surya Dev (Sun God) and offer prayers at riverbanks.</li>
+              </ul>
+              <p><b>📍 Time: October - November</b></p>
+
+              </div>
+
+            </div>
+            </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+              <h3>9. Nabanna (Harvest Festival)</h3>
+              <ul>
+                <li>A rural festival marking the harvest of new rice (Nabanna = New Rice).</li>
+                <li>People prepare pithe-puli (rice cakes), sweets, and rice dishes.</li>
+                <li>Folk music and dance performances are held in villages.</li>
+              </ul>
+              <p><b>📍 Time: November - December</b></p>
+
+              </div>
+              <div class="col-sm-4">
+              <img src="{% static 'nabanna.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+            </div><br>
+
+            <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+              <img src="{% static 'alla.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+                <h3>10. Eid-ul-Fitr & Eid-ul-Adha</h3>
+                <ul>
+                  <li>Celebrated by the Muslim community, especially in Kolkata, Murshidabad, and Malda.</li>
+                  <li>Special feasts include Biryani, Sheer Khurma, Kebabs, and Sweets.</li>
+                  <li>Huge congregational prayers are held at Nakhoda Masjid in Kolkata.</li>
+                </ul>
+                <p><b>📍 Time: Based on Islamic Calendar</b></p>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <h3>11. Gajan & Charak Festival</h3>
+                <ul>
+                  <li>Dedicated to Lord Shiva, involving ritualistic performances and extreme physical endurance tests
+                    like walking on fire.</li>
+                  <li>Charak Mela (fair) is held in rural areas.</li>
+                </ul>
+                <p><b>📍 Time: March - April</b></p>
+
+                <h3>12. Christmas (Boro Din) </h3>
+                <ul>
+                  <li>Kolkata's Park Street is beautifully decorated with lights, music, and festive markets.</li>
+                  <li>Midnight Mass at St. Paul's Cathedral and Bandel Church is popular.</li>
+                </ul>
+                <p><b>📍 Time: December 25</b></p>
+              </div>
+                <div class="col-sm-4">
+                <img src="{% static 'chris.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'biswa.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+                <h3>13. Vishwakarma Puja</h3>
+                <ul>
+                  <li>Dedicated to Lord Vishwakarma, the god of tools, machinery, and engineering.</li>
+                  <li>Celebrated by factories, engineering industries, and artisans with kite-flying competitions.</li>
+                </ul>
+                <p><b>📍 Time: September 17</b></p>
+                <h3>14. Teesta Tea & Tourism Festival</h3>
+                <ul>
+                  <li>Celebrated in North Bengal (Darjeeling, Dooars) to promote tea tourism.</li>
+                  <li>Visitors enjoy tea gardens, cultural performances, and traditional Himalayan cuisine.</li>
+                </ul>
+                <p><b>📍 Time: November - January</b></p>
+
+                </div>
+
+              </div>
+              </div><br>
+              <p>West Bengal's festivals are a blend of religious, cultural, and artistic celebrations, making the state one
+              of the most festive regions in India! 🎉</p><br><br>
+            </div>
+            <div id="wbfood" class="tab-pane fade in active" style="background-color: white;">
+              <h1>Foods of West Bengal</h1>
+              <p>West Bengal has a rich and diverse culinary tradition that blends flavors from different regions. Bengali
+              cuisine is known for its use of mustard oil, panch phoron (five-spice mix), and a balance of sweet and spicy
+              flavors. Here's a look at some of the most iconic foods of West Bengal:</p>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>1. Staple Food of Bengal</h3>
+                <ul>
+                  <li><b>Maachh-Bhaat (Fish & Rice):</b> The most popular dish, usually served with dal (lentils) and
+                  vegetables.</li>
+                  <li><b>Panta Bhat:</b> Fermented rice soaked in water, eaten with mustard oil, onion, and salt,
+                  especially in
+                  rural areas.</li>
+                </ul>
+                <h3>2. Bengali Breads</h3>
+                <ul>
+                  <li><b>Luchi:</b> Deep-fried, fluffy puris made of refined flour.</li>
+                  <li><b>Radha Ballavi: </b>Stuffed lentil puris, often eaten with cholar dal.</li>
+                  <li><b>Koraishutir Kochuri:</b> Pea-stuffed puris, commonly eaten in winter.</li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'staple.jpg' %}" alt="" style="height:200px;width: 220px;">
+
+                </div>
+
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'veg.jpg' %}" alt="" style="height:200px;width: 220px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>3. Famous Bengali Dishes</h3>
+                <h4>Fish & Seafood</h4>
+                <ul>
+                  <li><b>Shorshe Ilish (Hilsa in Mustard Gravy):</b> Bengal's most beloved fish dish, made with mustard
+                  paste.
+                  </li>
+                  <li><b>Chingri Malai Curry:</b> Prawns cooked in coconut milk and mild spices.</li>
+                  <li><b>Pabda Shorshe Jhol:</b> Pabda fish cooked in mustard-based gravy.</li>
+                  <li><b>Bhetki Paturi:</b> Bhetki fish marinated in mustard and steamed in banana leaves.</li>
+                </ul>
+                <h4>Vegetarian Dishes</h4>
+                <ul>
+                  <li><b>Shukto:</b> A mildly bitter dish made with vegetables like bitter gourd, drumsticks, and
+                  potatoes,
+                  often served as the first course.</li>
+                  <li><b>Aloo Posto:</b> Potatoes cooked in poppy seed paste, a simple yet beloved dish.</li>
+                  <li><b>Chorchori:</b> A mixed vegetable stir-fry with mustard paste.</li>
+                  <li><b>Labra:</b> A mixed vegetable curry, often served during pujas.</li>
+                </ul>
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'meat.jpg' %}" alt="" style="height:200px;width: 220px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h4>Meat Dishes</h4>
+                <ul>
+                  <li><b>Kosha Mangsho:</b> A rich, slow-cooked mutton curry with spices and mustard oil.</li>
+                  <li><b>Chicken Dak Bungalow:</b> A colonial-era chicken curry with eggs and potatoes.</li>
+                  <li><b>Pathar Mangsho:</b> Goat meat curry, traditionally prepared during Durga Puja.</li>
+                </ul>
+                <h4>Dal & Accompaniments</h4>
+                <ul>
+                  <li><b>Dal with Begun Bharta (Mashed Eggplant):</b> Lentils paired with mashed, roasted eggplant with
+                  mustard
+                  oil.</li>
+                  <li><b>Cholar Dal:</b> Chana dal cooked with coconut and mild spices, often paired with luchi.</li>
+                </ul>
+
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>4. Bengali Sweets (Mishti)</h3>
+                <ul>
+                  <li><b>Rasgulla:</b> Soft, spongy, syrup-soaked cheese balls, originally from Bengal.</li>
+                  <li><b>Sandesh:</b> A dry sweet made from chhena (cottage cheese) and sugar.</li>
+                  <li><b>Mishti Doi:</b> Sweet, fermented yogurt, served in earthen pots.</li>
+                  <li><b>Pantua:</b> Deep-fried, syrupy sweets similar to gulab jamun.</li>
+                  <li><b>Chomchom: </b>A cylindrical, juicy sweet made with chhena.</li>
+                  <li><b>Sitabhog & Mihidana:</b> Famous sweets from Bardhaman, made from rice and gram flour.</li>
+                </ul>
+
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'rosso.jpg' %}" alt="" style="height:200px;width: 220px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'phuchka.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>5. Street Food of West Bengal</h3>
+                <ul>
+                  <li><b>Phuchka (Pani Puri/Golgappa):</b> Hollow puris filled with spicy tamarind water, mashed
+                  potatoes, and
+                  chickpeas.</li>
+                  <li><b>Kathi Roll:</b> A paratha roll stuffed with chicken, mutton, or egg.</li>
+                  <li><b>Ghugni:</b> A spicy yellow pea curry, often eaten with puffed rice.</li>
+                  <li><b>Jhalmuri: </b>Puffed rice mixed with mustard oil, peanuts, and spices.</li>
+                  <li><b>Telebhaja:</b> Deep-fried snacks like beguni (fried eggplant), aloor chop (potato fritters),
+                  and
+                  peyaji (onion fritters).</li>
+                </ul>
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>6. Famous Drinks</h3>
+                <ul>
+                  <li><b>Cha (Tea):</b> Bengal's tea stalls serve a variety of teas, from strong masala chai to
+                  Darjeeling tea.
+                  </li>
+                  <li><b>Aam Panna:</b> A summer drink made from raw mango and mint.</li>
+                  <li><b>Dab er Jol: </b>Coconut water, a refreshing drink in hot weather.</li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'tea.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>7. Special Festival Foods</h3>
+                <ul>
+                  <li><b>Pithe-Puli:</b> Sweet rice cakes made with coconut, jaggery, and milk, prepared during Makar
+                  Sankranti.</li>
+                  <li><b>Narkel Nadu:</b> Coconut laddoos made during festivals.</li>
+                  <li><b>Payesh:</b> Rice pudding with milk, sugar, and dry fruits, made during birthdays and pujas.
+                  </li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'pithe.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+            </div>
+          </div>
+          <br>
+          <p>West Bengal's cuisine is a mix of rich flavors, delicate sweets, and iconic street foods, making it one of
+            the most delicious regional cuisines in India! 🍛🐟🍬</p><br><br>
+        </div>
+        <div id="wbhistory" class="tab-pane fade in active" style="background-color: white;">
+          <h1>History of West Bengal</h1>
+          <p>West Bengal has a rich and diverse history that spans ancient civilizations, medieval kingdoms, British
+            colonial rule, and the modern era. The region has played a significant role in India's political, cultural,
+            and intellectual history.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>1. Ancient Bengal (Before 6th Century CE)</h3>
+                <ul>
+                  <li><b>Vedic Period (1500 BCE - 500 BCE):</b> </b>Bengal was known as "Vanga" in ancient texts like
+                    the
+                    Mahabharata. It was inhabited by various tribes.</li>
+                  <li><b>Maurya Empire (321 BCE - 185 BCE):</b> Chandragupta Maurya annexed Bengal. Emperor Ashoka
+                    spread
+                    Buddhism here.</li>
+                  <li><b>Gupta Empire (319 CE - 550 CE):</b> Bengal became an important center of art, culture, and
+                    education
+                    (Nalanda & Vikramshila Universities flourished).</li>
+                </ul>
+
+              </div>
+                <div class="col-sm-4">
+                <img src="{% static 'maurya.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'pala.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>2. Medieval Bengal (6th - 16th Century)</h3>
+                <h4>Pala Dynasty (750 CE - 1174 CE):</h4>
+                <ul>
+                  <li>Ruled Bengal for 400 years, promoting Buddhism, art, and education.</li>
+                  <li>Built Vikramshila & Somapura Mahavihara (Paharpur, now in Bangladesh).</li>
+                  <li>Trade flourished with Southeast Asia.</li>
+                </ul>
+                <h4>Sena Dynasty (11th - 13th Century):</h4>
+                <ul>
+                  <li>Hindu rulers who revived Brahmanical traditions.</li>
+                  <li>Introduced Kulinism (caste hierarchy in Bengal society).</li>
+                </ul>
+
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'delhi.png' %}" alt="" style="height:220px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+                <h4>Delhi Sultanate Rule (1204 CE - 1352 CE):</h4>
+                <ul>
+                  <li>Bakhtiyar Khilji invaded Bengal in 1204, defeating Lakshman Sen.</li>
+                  <li>Islam spread, and Bengal became part of the Delhi Sultanate.</li>
+                </ul>
+                <h4>Independent Bengal Sultanate (1352 CE - 1576 CE):</h4>
+                <ul>
+                  <li>Bengal became independent from Delhi under rulers like Shamsuddin Ilyas Shah.</li>
+                  <li>Mosques, madrasas, and terracotta temples were built.</li>
+                  <li>Sufi saints like Shah Jalal and Shah Makhdum spread Islam.</li>
+                </ul>
+
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>3. Mughal Rule in Bengal (1576 CE - 1757 CE)</h3>
+                <ul>
+                  <li>Bengal was annexed by Akbar in 1576 and became the wealthiest province.</li>
+                  <li>Murshid Quli Khan became Bengal's first Nawab and shifted the capital from Dhaka to Murshidabad.
+                  </li>
+                  <li>Bengal Subah (province) became the economic powerhouse of the Mughal Empire.</li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'mughal.jpg' %}" alt="" style="height:200px;width: 250px;">
+
+                </div>
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'plassey.jpg' %}" alt="" style="height:230px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h2>4. British Colonial Rule (1757 CE - 1947 CE)</h3>
+                  <h3>Battle of Plassey (1757) - The Fall of Bengal</h3>
+                  <ul>
+                  <li>Siraj-ud-Daulah (Last independent Nawab of Bengal) was betrayed by Mir Jafar and defeated by the
+                    British East India Company.</li>
+                  <li>The British took control of Bengal, marking the beginning of British rule in India.</li>
+                  </ul>
+                  <h3>Economic Drain & Famine</h3>
+                  <ul>
+                  <li>The British imposed heavy taxes, leading to the Great Bengal Famine of 1770, which killed
+                    millions.</li>
+                  <li>Bengal's textile industry collapsed due to British policies.</li>
+                  </ul>
+
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'rammohan.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <h3>Cultural Renaissance & Revolt</h3>
+                <ul>
+                  <li><b>Bengal Renaissance (19th Century):</b></li>
+                  <ul>
+                  <li>Raja Ram Mohan Roy started the Brahmo Samaj and fought against Sati.</li>
+                  <li>Ishwar Chandra Vidyasagar introduced widow remarriage and women's education.</li>
+                  <li>Bankim Chandra Chattopadhyay wrote "Vande Mataram".</li>
+                  <li>Rabindranath Tagore modernized Bengali literature and won the Nobel Prize (1913).</li>
+                  </ul>
+
+                </ul>
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'netaji.jpg' %}" alt="" style="height:230px;width: 200px;">
+
+                </div>
+                <div class="col-sm-8">
+
+                <ul>
+                  <li><b>Partition of Bengal (1905 & 1911):</b></li>
+                  <ul>
+                  <li>The British divided Bengal to weaken Hindu-Muslim unity.</li>
+                  <li>Widespread protests led to its reunification in 1911.</li>
+                  </ul>
+                  <li><b>Revolutionary Movements:</b></li>
+                  <ul>
+                  <li>Bengal became the center of anti-British movements.</li>
+                  <li>Freedom fighters like Khudiram Bose, Surya Sen, Netaji Subhas Chandra Bose, Bagha Jatin,
+                    Binoy-Badal-Dinesh led armed struggles.</li>
+                  <li>Netaji Subhas Chandra Bose formed the Indian National Army (INA).</li>
+                  </ul>
+                </ul>
+                </div>
+
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>5. Partition & Post-Independence (1947 - Present)</h3>
+                <h4>Partition of Bengal (1947)</h4>
+                <ul>
+                  <li>Bengal was divided into:</li>
+                  <ul>
+                  <li>West Bengal (India - Hindu majority).</li>
+                  <li>East Pakistan (now Bangladesh - Muslim majority).</li>
+                  </ul>
+                  <li>Millions were displaced due to communal riots.</li>
+                  <li>Kolkata became the capital of West Bengal.</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'part.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+                <h4>Post-Independence Developments</h4>
+                <ul>
+                  <li>Refugee crisis from East Pakistan (now Bangladesh) shaped Bengal's economy and politics.</li>
+                  <li><b>1960s & 1970s:</b> Rise of Communist Movements (Naxalbari movement).</li>
+                  <li><b>1977 - 2011:</b> Left Front Government (Longest-serving democratically elected Communist
+                  government in
+                  the world).</li>
+                  <li><b>2011 - Present:</b> Trinamool Congress (TMC) Government under Mamata Banerjee.</li>
+                </ul>
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'part1.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              </div>
+              </div>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>6. Present-Day West Bengal</h3>
+                <ul>
+                  <li><b>Cultural Capital of India:</b> Kolkata is the hub of literature, arts, and cinema.</li>
+                  <li><b>Economic Growth:</b> IT sector, industries, agriculture, and tourism are key sectors.</li>
+                  <li><b>Tourist Attractions:</b> Sundarbans, Darjeeling, Victoria Memorial, Howrah Bridge, Dakshineswar
+                  Temple, and more. </li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'present.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              </div>
+              </div><br>
+
+              <p>West Bengal has witnessed ancient empires, Muslim rule, British colonization, revolutions, and modern
+              political transformations. It remains a center of culture, education, and politics in India. 🚩📜</p>
+              <br><br>
+            </div>
+            <div id="wbartacraft" class="tab-pane fade in active" style="background-color: white;">
+              <h1>Art & Craft of West Bengal 🎨🖌️</h1>
+              <p>West Bengal has a rich artistic heritage, blending traditional craftsmanship with cultural influences from
+              Hindu, Mughal, and colonial periods. Bengali artisans are known for their intricate craftsmanship,
+              storytelling through art, and diverse materials like terracotta, clay, wood, and textiles.</p>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-8">
+
+                <h3>1. Terracotta Art & Pottery 🏺</h3>
+                <h4>🔸 Bankura Terracotta Art</h4>
+                <ul>
+                  <li><b>Famous for:</b> Terracotta horses (Bankura horses), elephants, and decorative panels.</li>
+                  <li><b>Where?</b> Bishnupur, Bankura district.</li>
+                  <li><b>Used in:</b> Temple decorations (like the famous Bishnupur temples).</li>
+                </ul>
+                <h4>🔸 Clay & Pottery Work</h4>
+                <ul>
+                  <li><b>Krishnanagar Clay Dolls:</b> Handmade, realistic clay figurines depicting everyday life,
+                  mythology,
+                  and animals.</li>
+                  <li><b>Kumartuli Idol Making:</b> Kolkata's famous Kumartuli artists craft Durga idols and other gods
+                  for
+                  pujas.</li>
+                </ul>
+
+                </div>
+                <div class="col-sm-4">
+                <img src="{% static 'tera.jpg' %}" alt="" style="height:200px;width: 230px;">
+
+                </div>
+
+              </div>
+              </div><br>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'textile.jpg' %}" alt="" style="height:200px;width: 200px;">
+
+                </div>
+              <div class="col-sm-8">
+
+                <h3>2. Textile & Weaving 🧵</h3>
+                <h4>🔸 Baluchari Sarees</h4>
+                <ul>
+                  <li><b>Origin:</b> Bishnupur, West Bengal.</li>
+                  <li><b>Features: </b>Rich silk sarees with intricate mythological motifs woven in gold or silver
+                    threads.
+                  </li>
+                </ul>
+                <h4>🔸 Tant Sarees</h4>
+                <ul>
+                  <li><b>Origin:</b> Phulia, Murshidabad, Nadia, Hooghly.</li>
+                  <li><b>Features:</b> Light, airy cotton sarees with floral and paisley designs.</li>
+                </ul>
+                <h4>🔸 Kantha Embroidery</h4>
+                <ul>
+                  <li><b>Origin:</b> Rural Bengal (Birbhum, Murshidabad, Malda).</li>
+                  <li><b>Features:</b> Hand-stitched embroidery on sarees, quilts, and dupattas, often depicting rural
+                    stories
+                    and nature.</li>
+                </ul>
+                <h4>🔸 Muslin Weaving (Dhaka Muslin)</h4>
+                <ul>
+                  <li><b>Famous for:</b> Ultra-fine, soft cotton fabric, once globally renowned.</li>
+                  <li>Declined during British rule but still exists in Murshidabad. </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>3. Dokra Metal Craft 🏺</h3>
+                <ul>
+                  <li><b>Origin:</b> Tribal areas of Bankura, Purulia, and Midnapore.</li>
+                  <li><b>Material:</b> Made of brass and bronze using the lost-wax casting method.</li>
+                  <li><b>Designs:</b> Intricate tribal figurines, jewelry, idols of gods, and animals.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="dokra.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="gomira.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>4. Wooden & Cane Craft 🌳</h3>
+                <h4>🔸 Wooden Dolls (Gomira Masks)</h4>
+                <ul>
+                  <li><b>Origin: </b>Dinajpur & Malda.</li>
+                  <li><b>Purpose: </b>Used in Chhau Dance & Gomira Dance performances.</li>
+                </ul>
+                <h4>🔸 Cane & Bamboo Handicrafts</h4>
+                <ul>
+                  <li><b>Popular in:</b> Jalpaiguri, Cooch Behar, and the Sundarbans.</li>
+                  <li><b>Items:</b> Handmade furniture, mats, baskets, and fans.</li>
+                </ul>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>5. Patachitra - Scroll Painting 🎨</h3>
+                <ul>
+                  <li><b>Origin:</b> Midnapore, West Bengal.</li>
+                  <li><b>Style:</b> Mythological and folk storytelling through long scrolls painted with natural dyes.
+                  </li>
+                  <li><b>Chalchitra:</b> A special form of painting behind Durga idols in pujas.</li>
+                </ul>
+                <h3>6. Bengal Dolls & Wooden Toys 🧸</h3>
+                <ul>
+                  <li><b>Famous in:</b> Natungram (Bardhaman).</li>
+                  <li><b>Toys:</b> Handcrafted wooden dolls of Krishna, Chaitanya Mahaprabhu, and animals.</li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <img src="potochitra.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="kalighat.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>7. Kalighat Paintings 🖌️</h3>
+                <ul>
+                  <li></b>Origin:</b> 19th-century Kolkata, near Kalighat Temple.</li>
+                  <li></b>Features:</b> Simple, bold watercolor paintings depicting mythology, social satire, and daily
+                    life.
+                  </li>
+                </ul>
+                <h3>8. Conch Shell Carving & Shankha Art 🐚</h3>
+                <ul>
+                  <li><b>Location:</b> Murshidabad & Bishnupur.</li>
+                  <li><b>Uses: </b>Traditional Bengali shankha bangles (worn by married women), jewelry, and idols.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>9. Jute & Sholapith Craft 🌾</h3>
+                <h4>🔸 Jute Craft</h4>
+                <ul>
+                  <li>West Bengal is a major jute producer, and artisans make:</li>
+                  <ul>
+                    <li>Jute bags, carpets, wall hangings, and jewelry.</li>
+                  </ul>
+                </ul>
+                <h4>🔸 Sholapith (Indian Cork) Craft</h4>
+                <ul>
+                  <li><b>Material:</b> Made from Shola (soft milky-white reed).</li>
+                  <li><b>Uses:</b> Used in making Durga idols' crowns, decorative items, and wedding headgear (Topor for
+                    grooms, Mukut for brides).</li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <img src="jute.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div>
+          <h2>📌 Summary: Bengal's Art & Craft Forms</h2>
+          <div style="overflow-x:auto;">
+            <table>
+              <tr>
+                <th>Art Form</th>
+                <th>Location</th>
+                <th>Famous For</th>
+              </tr>
+              <tr>
+                <td>Terracotta Art</td>
+                <td>Bishnupur, Bankura</td>
+                <td>Bankura Horses, Terracotta Temples</td>
+              </tr>
+              <tr>
+                <td>Clay Dolls & Pottery</td>
+                <td>Krishnanagar, Kumartuli</td>
+                <td>Durga Idols, Clay Dolls</td>
+              </tr>
+              <tr>
+                <td>Baluchari Silk</td>
+                <td>Bishnupur</td>
+                <td>Mythological Motifs on Sarees</td>
+              </tr>
+              <tr>
+                <td>Tant Cotton Sarees</td>
+                <td>Murshidabad, Hooghly</td>
+                <td>Lightweight Cotton Sarees</td>
+              </tr>
+              <tr>
+                <td>Kantha Embroidery</td>
+                <td>Birbhum, Malda</td>
+                <td>Hand-stitched Sarees & Quilts</td>
+              </tr>
+              <tr>
+                <td>Dokra Metal Art</td>
+                <td>Bankura, Purulia</td>
+                <td>Brass Tribal Figurines</td>
+              </tr>
+              <tr>
+                <td>Patachitra Painting</td>
+                <td>Midnapore</td>
+                <td>Mythological Scroll Paintings</td>
+              </tr>
+              <tr>
+                <td>Kalighat Paintings</td>
+                <td>Kolkata</td>
+                <td>Bold, Satirical Paintings</td>
+              </tr>
+              <tr>
+                <td>Jute Handicrafts</td>
+                <td>Murshidabad, Kolkata</td>
+                <td>Bags, Carpets, Decor</td>
+              </tr>
+              <tr>
+                <td>Sholapith Craft</td>
+                <td>Murshidabad</td>
+                <td>Wedding Headgear, Durga Crowns</td>
+              </tr>
+              <tr>
+                <td>Wooden Toys</td>
+                <td>Natungram (Bardhaman)</td>
+                <td>Krishna, Folk Dolls</td>
+              </tr>
+              <tr>
+                <td>Cane & Bamboo Craft</td>
+                <td>Sundarbans, Jalpaiguri</td>
+                <td>Baskets, Furniture</td>
+              </tr>
+            </table>
+          </div>
+          <br><br>
+          <p>West Bengal's art and crafts are a blend of history, culture, and traditional skills, passed down through
+            generations. Whether it's the elegant Baluchari sarees, terracotta temples, or the delicate Patachitra
+            paintings, Bengal's artisans continue to preserve and innovate their heritage. 🎭✨</p>
+          <br><br>
+        </div>
+        <div id="wbseason" class="tab-pane fade in active" style="background-color: white;">
+          <h1>Seasons to visit West Bengal 🌧️☀️ </h1>
+          <p>West Bengal has a rich artistic heritage, blending traditional craftsmanship with cultural influences from
+            Hindu, Mughal, and colonial periods. Bengali artisans are known for their intricate craftsmanship,
+            storytelling through art, and diverse materials like terracotta, clay, wood, and textiles.</p>
+
+          <br><br>
+          <h2>📌 Summary: Best Time to Visit Different Places in West Bengal</h2>
+          <div style="overflow-x:auto;">
+            <table>
+              <tr>
+                <th>Region</th>
+                <th>Best Season</th>
+                <th>Recommended Months</th>
+                <th>Why Visit?</th>
+              </tr>
+              <tr>
+                <td>Kolkata</td>
+                <td>Winter, Spring </td>
+                <td>October - March</td>
+                <td>Best weather, Durga Puja, Christmas celebrations, historical sites</td>
+              </tr>
+              <tr>
+                <td>Darjeeling & North Bengal (Kalimpong, Dooars, Kurseong, Sandakphu)</td>
+                <td>Spring, Summer, Autumn </td>
+                <td>March - June, September - November</td>
+                <td>Pleasant weather, clear views of the Himalayas, trekking, and tea gardens</td>
+              </tr>
+              <tr>
+                <td>Sundarbans (Mangrove Forest & Tiger Reserve)</td>
+                <td>Winter</td>
+                <td>October - March</td>
+                <td>Best time for wildlife spotting, boat safaris</td>
+              </tr>
+              <tr>
+                <td>Digha & Mandarmani (Beaches)</td>
+                <td>Winter, Spring, Early Summer </td>
+                <td>October - April</td>
+                <td>Pleasant beach weather, seafood, water sports</td>
+              </tr>
+              <tr>
+                <td>Shantiniketan (Tagore's Land)</td>
+                <td>Winter, Spring </td>
+                <td>October - March</td>
+                <td>Best for cultural festivals like Poush Mela, Basanta Utsav (Holi)</td>
+              </tr>
+              <tr>
+                <td>Bishnupur (Terracotta Temples & Heritage)</td>
+                <td>Winter </td>
+                <td>October - March</td>
+                <td>Best weather for exploring temples, traditional Baluchari sarees</td>
+              </tr>
+              <tr>
+                <td>Murshidabad & Malda (Historical Sites)</td>
+                <td>Winter </td>
+                <td>October - March</td>
+                <td>Ideal for sightseeing, old Mughal and Nawabi-era architecture</td>
+              </tr>
+              <tr>
+                <td>Dooars (Jaldapara, Gorumara - Wildlife & Tea Gardens)</td>
+                <td>Winter, Spring, Monsoon </td>
+                <td>October - April</td>
+                <td>Best for jungle safaris, tea gardens, and river valleys</td>
+              </tr>
+              <tr>
+                <td>Purulia (Ajodhya Hills, Tribal Culture, Chhau Dance)</td>
+                <td>Winter, Spring </td>
+                <td>October - March</td>
+                <td>Great for trekking, nature lovers, and cultural festivals</td>
+              </tr>
+
+            </table>
+          </div><br><br>
+          <h2>2. Season-wise Breakdown for Visiting West Bengal</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🌸 Spring (March - April)</h3>
+                <ul>
+                  <li>Best for Darjeeling, Kalimpong, and North Bengal as the flowers bloom.</li>
+                  <li>Basanta Utsav (Holi) in Shantiniketan is a unique cultural celebration.</li>
+                  <li>Pleasant weather in Kolkata, Bishnupur, and Murshidabad for sightseeing.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="spring.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="summer.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>☀️ Summer (May – June)</h3>
+                <ul>
+                  <li>Darjeeling, Kalimpong, and Sandakphu are best for escaping the heat.</li>
+                  <li>Digha & Mandarmani beaches are great for a summer holiday, but afternoons can be hot.</li>
+                  <li>Dooars & Jaldapara are lush and green, perfect for wildlife lovers.</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🌧️ Monsoon (July - September)</h3>
+                <ul>
+                  <li>Dooars and North Bengal look beautiful with rain-fed rivers and greenery.</li>
+                  <li>Sundarbans is good for adventurous travelers but has occasional floods.</li>
+                  <li>Avoid visiting coastal areas (Digha, Mandarmani) due to high tides.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="rain.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="autmn.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>🍁 Autumn (October - November)</h3>
+                <ul>
+                  <li>Best season for Durga Puja in Kolkata - a must-visit!</li>
+                  <li>Darjeeling and Sandakphu have stunning views of the Kanchenjunga range.</li>
+                  <li>Bishnupur, Murshidabad, and Malda are perfect for heritage exploration.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>❄️ Winter (December - February)</h3>
+                <ul>
+                  <li>Best time for wildlife safaris in Sundarbans & Jaldapara.</li>
+                  <li>Perfect weather for Kolkata sightseeing, Christmas in Park Street.</li>
+                  <li>Poush Mela (Shantiniketan) & Baul Fakiri Utsav are cultural highlights.</li>
+                  <li>Ideal for trekking in Purulia and the Ajodhya Hills.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="winter.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <h1 style=" text-align: center;">📌 Summary: When to Visit West Bengal</h1><br>
+              <ul>
+                <li><b>For festivals & cultural experiences:</b> October - March (Durga Puja, Christmas, Poush Mela,
+                  Basanta
+                  Utsav)</li>
+                <li><b>For hill stations & trekking:</b> March - June, September - November (Darjeeling, Sandakphu,
+                  Dooars)
+                </li>
+                <li><b>For wildlife & forests:</b> October - April (Sundarbans, Jaldapara, Gorumara)</li>
+                <li><b>For beaches & coastal areas:</b> October - April (Digha, Mandarmani, Bakkhali)</li>
+                <li><b>For heritage & historical sites:</b> October - March (Murshidabad, Bishnupur, Malda)</li>
+              </ul>
+
+            </div>
+          </div>
+          <br><br>
+        </div>
+        <div id="wbtourist" class="tab-pane fade in active" style="background-color: white;">
+          <h1>Tourist Spots of West Bengal 🏖️🏔️</h1>
+          <p>West Bengal is a diverse state with mountains, beaches, forests, heritage sites, and cultural hubs. Here's
+            a categorized list of the best tourist places in West Bengal:</p>
+
+          <br><br>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>1. Hill Stations & Mountain Destinations 🏔️</h3>
+                <ul>
+                  <li><b>Darjeeling -</b> Tiger Hill, Batasia Loop, Himalayan Mountaineering Institute, Tea Gardens</li>
+                  <li><b>Kalimpong -</b> Deolo Hill, Durpin Monastery, Morgan House</li>
+                  <li><b>Lava & Lolegaon - </b>Neora Valley National Park, Canopy Walk</li>
+                  <li><b>Sandakphu - </b>Trekking to the highest peak of West Bengal</li>
+                  <li><b>Mirik - </b>Sumendu Lake, Orange Orchards</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="darj.jpg" alt="" style="height:200px;width: 230px;">
+
+              </div>
+
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="biswagate.jpg" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>2. Heritage & Cultural Destinations 🏛️</h3>
+                <ul>
+                  <li><b>Kolkata - </b>Victoria Memorial, Indian Museum, Howrah Bridge, Marble Palace.</li>
+                  <li><b>Shantiniketan - </b>Visva Bharati University, Sonajhuri Forest, Baul Music.</li>
+                  <li><b>Bishnupur - </b>Terracotta Temples, Baluchari Saree Weaving Centers.</li>
+                  <li><b>Murshidabad -</b> Hazarduari Palace, Katra Masjid, Motijheel.</li>
+                  <li><b>Cooch Behar -</b> Cooch Behar Palace, Madan Mohan Temple.</li>
+                  <li><b>Malda (Gour & Pandua) -</b> Ancient mosques & historic ruins.</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>3. Wildlife & Nature Destinations 🌳🐯</h3>
+                <ul>
+                  <li><b>Sundarbans National Park -</b> UNESCO site, home to Royal Bengal Tigers.</li>
+                  <li><b>Dooars -</b> Gorumara National Park, Jaldapara Wildlife Sanctuary.</li>
+                  <li><b>Buxa Tiger Reserve - </b>Dense forests & trekking trails.</li>
+                  <li><b>Neora Valley National Park -</b> Himalayan biodiversity hotspot.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="sundar.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="digha.jpg" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>4. Beach Destinations 🏖️</h3>
+                <ul>
+                  <li><b>Digha -</b> Popular family beach, Marine Aquarium.</li>
+                  <li><b>Mandarmani -</b> Adventure beach with ATV rides & parasailing.</li>
+                  <li><b>Tajpur -</b> Secluded beach, red crab sightings.</li>
+                  <li><b>Shankarpur -</b> Fishermen's village with peaceful views.</li>
+                  <li><b>Bakkhali & Henry's Island -</b> Quiet beaches, mangrove forests.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>5. Religious Destinations ⛩️</h3>
+                <ul>
+                  <li><b>Dakshineswar Kali Temple (Kolkata) - </b>Famous Hindu temple.</li>
+                  <li><b>Kalighat Temple (Kolkata) -</b> One of the 51 Shakti Peethas.</li>
+                  <li><b>Tarapith (Birbhum) -</b> Famous tantric temple of Goddess Tara.</li>
+                  <li><b>Mayapur (Nadia) -</b> ISKCON temple, headquarters of Gaudiya Vaishnavism.</li>
+                  <li><b>Ganga Sagar -</b> Annual Makar Sankranti pilgrimage site.</li>
+                  <li><b>Mahishadal Rajbari (Midnapore) -</b> Famous Durga Puja celebration.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="dak.png" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="ajhills.png" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>6. Adventure & Offbeat Destinations 🎢🚵</h3>
+                <ul>
+                  <li><b>Sandakphu & Phalut Trek -</b> Trek to the highest peak of West Bengal.</li>
+                  <li><b>Singalila National Park -</b> Offbeat trekking, stunning views of Kanchenjunga.</li>
+                  <li><b>Ayodhya Hills (Purulia) - </b>Rock climbing, waterfalls, tribal villages.</li>
+                  <li><b>Jhargram -</b> Tribal culture, forests, Chilkigarh Palace.</li>
+                  <li><b>Susunia Hills -</b> Rock climbing & ancient rock inscriptions .</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>7. Food & Shopping Hotspots 🍛🛍️</h3>
+                <ul>
+                  <li><b>College Street, Kolkata -</b> Asia's largest book market.</li>
+                  <li><b>New Market, Kolkata -</b> Shopping & street food hub.</li>
+                  <li><b>Mullick Ghat Flower Market -</b> One of India's largest flower markets.</li>
+                  <li><b>China Town, Kolkata -</b> Authentic Chinese food in Tangra.</li>
+                  <li><b>Kumartuli, Kolkata -</b> Idol-making hub of Durga Puja.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="kumar.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div>
+          <br><br>
+
+        </div>
+        <div id="wbwild" class="tab-pane fade in active" style="background-color: white;">
+          <h1> Wildlife & Crops of West Bengal 🌿</h1>
+          <p>West Bengal has diverse wildlife and a rich agricultural landscape due to its varied geography, from the
+            Himalayan foothills to the Sundarbans delta.</p>
+
+          <br>
+          <h2>Wildlife of West Bengal </h2>
+          <p>West Bengal has 6 national parks and 16 wildlife sanctuaries, making it one of India's most biodiverse
+            states.</p>
+
+          <br>
+          <h2>🔹 Major National Parks & Wildlife Sanctuaries</h2>
+          <div>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Famous For</th>
+              </tr>
+              <tr>
+                <td>Sundarbans National Park (UNESCO Site)</td>
+                <td>South 24 Parganas </td>
+                <td>Royal Bengal Tiger 🐅, Estuarine Crocodiles 🐊, Mangrove Ecosystem</td>
+              </tr>
+              <tr>
+                <td>Jaldapara National Park</td>
+                <td>Alipurduar </td>
+                <td>One-Horned Rhinoceros 🦏, Elephants 🐘</td>
+              </tr>
+              <tr>
+                <td>Gorumara National Park</td>
+                <td>Jalpaiguri</td>
+                <td>Indian Bison, Leopards 🐆, Rhino</td>
+              </tr>
+              <tr>
+                <td>Buxa Tiger Reserve</td>
+                <td>Alipurduar </td>
+                <td>Tigers, Clouded Leopards, Himalayan Black Bears</td>
+              </tr>
+              <tr>
+                <td>Neora Valley National Park</td>
+                <td>Kalimpong </td>
+                <td>Red Pandas , Rare Orchids</td>
+              </tr>
+              <tr>
+                <td>Singalila National Park</td>
+                <td>Darjeeling </td>
+                <td> Red Pandas, Himalayan Black Bears, Trekking Routes</td>
+              </tr>
+              <tr>
+                <td>Bethuadahari Wildlife Sanctuary</td>
+                <td>Nadia </td>
+                <td> Spotted Deer 🦌, Peacocks 🦚</td>
+              </tr>
+            </table>
+          </div>
+          <bt><br></bt>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3> 🔹 Other Notable Wildlife in Bengal</h3>
+                <ul>
+                  <li><b>Mammals:</b> Fishing Cat (State Animal), Asiatic Elephants, Leopards, Wild Boars.</li>
+                  <li><b>Birds: </b>Storks, Hornbills, Parakeets, Herons, Kingfishers.</li>
+                  <li><b>Reptiles:</b> Pythons, Cobras, Monitor Lizards.</li>
+                  <li><b>Marine Life:</b> Gangetic Dolphins, Horseshoe Crabs.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="ele.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+
+            </div>
+          </div>
+          <h2>🌾 Agriculture & Major Crops in West Bengal </h2>
+          <p>West Bengal is one of India's top agricultural states, producing a variety of cereals, pulses, vegetables,
+            fruits, and spices.</p>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 Key Agricultural Features</h3>
+                <ul>
+                  <li>Largest producer of Rice, Jute, Tea, and Vegetables in India.</li>
+                  <li></b>Fertile Land:</b> Thanks to the Ganges Delta & Himalayan foothills.</li>
+                  <li></b>Climate:</b> Supports both Kharif & Rabi crops.</li>
+                  <li></b>Irrigation:</b> Hooghly, Teesta, and Damodar rivers support farming.</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="jutep.jpg" alt="" style="height:200px;width: 220px;">
+
+              </div>
+            </div>
+          </div>
+          <h2>🔹 Major Crops of West Bengal</h2>
+          <div>
+            <table>
+              <tr>
+                <th>Category</th>
+                <th>Crops</th>
+              </tr>
+              <tr>
+                <td>Cereals</td>
+                <td>Rice 🍚, Wheat 🌾, Maize 🌽, Barley </td>
+              </tr>
+              <tr>
+                <td>Cash Crops</td>
+                <td>Jute, Tea 🍵, Sugarcane </td>
+              </tr>
+              <tr>
+                <td>Pulses</td>
+                <td>Gram, Lentils, Moong Dal</td>
+              </tr>
+              <tr>
+                <td>Vegetables</td>
+                <td> Potato 🥔 (2nd highest producer in India), Cauliflower, Brinjal, Cabbage, Tomato 🍅</td>
+              </tr>
+              <tr>
+                <td>Fruits</td>
+                <td>Mango 🥭 (Malda), Litchi, Guava, Banana 🍌, Pineapple 🍍, Jackfruit</td>
+              </tr>
+              <tr>
+                <td>Oilseeds</td>
+                <td>Mustard, Sunflower 🌻, Sesame</td>
+              </tr>
+              <tr>
+                <td>Spices</td>
+                <td>Turmeric, Ginger, Garlic 🧄, Coriander</td>
+              </tr>
+              <tr>
+                <td>Flowers</td>
+                <td>Marigold, Jasmine 🌼 (Used in Durga Puja & Kali Puja)</td>
+              </tr>
+            </table>
+          </div><br><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 Special Agricultural Products</h3>
+                <ul>
+                  <li>Darjeeling Tea 🍵 (World-famous, GI-tagged).</li>
+                  <li>Gobindobhog Rice (Premium aromatic rice from Bardhaman).</li>
+                  <li>Malda Mangoes 🥭 (Highly exported).</li>
+                  <li>Jute Industry (Known as the "Golden Fibre", major jute mills in Howrah & Hooghly).</li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="mango.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <hr>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <h3> Sustainable Agriculture & Modern Trends 🌾</h3>
+                <ul>
+                  <li><b>Organic Farming:</b> Growing in North Bengal (Kalimpong, Darjeeling).</li>
+                  <li><b>Precision Farming:</b> Use of drones & sensors for better crop yield.</li>
+                  <li><b>Aquaculture & Fisheries:</b> West Bengal is India's largest producer of fish 🐟, especially
+                    Hilsa
+                    (Ilish).</li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <img src="teag.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br><br>
+          <p>West Bengal is a paradise for both nature lovers and agricultural enthusiasts. It has rich wildlife
+            sanctuaries, lush tea gardens, and fertile farmlands that support a diverse ecosystem and economy.</p>
+          <br><br>
+        </div>
+        <div id="wbedu" class="tab-pane fade in active" style="background-color: white;">
+          <h1>🎓 Education & Institutions in West Bengal</h1>
+          <p>West Bengal has a rich educational heritage with some of India's oldest and most prestigious universities,
+            research institutions, and schools. It played a crucial role in the Bengal Renaissance and remains a major
+            hub for higher education, science, technology, and literature.</p>
+
+          <br><br>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>📌 Education System in West Bengal</h3>
+                <ul>
+                  <li><b>School Education:</b> Follows WBBSE (West Bengal Board), WBCHSE (Higher Secondary), ICSE, CBSE,
+                    and
+                    Madrasa Boards.</li>
+                  <li><b>Higher Education:</b> Managed by UGC, AICTE, and state universities.</li>
+                  <li><b>Major Fields:</b> Engineering, Medical, Science, Arts, Commerce, Law, Agriculture, and
+                    Management.
+                  </li>
+                </ul>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="wbbse.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+
+            </div>
+          </div>
+          <h2>🏛️ Top Universities & Institutions </h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 Central Universities</h3>
+                <ol>
+                  <li><b>Visva-Bharati University (Shantiniketan) -</b> Founded by Rabindranath Tagore, focuses on
+                    liberal
+                    arts, music, and humanities.</li>
+                  <li><b>Aliah University (Kolkata) -</b> A premier minority institution for science, technology, and
+                    Islamic
+                    studies.</li>
+                </ol>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="visva.jpg" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 State Universities</h3>
+                <ol>
+                  <li><b>University of Calcutta (CU) -</b> Established in 1857, one of India's oldest and most
+                    prestigious
+                    universities.</li>
+                  <li><b>Jadavpur University (JU) -</b> Ranked among India's best for engineering, literature, and
+                    research.
+                  </li>
+                  <li><b>Presidency University (PU) - </b>Formerly Presidency College, known for excellence in science,
+                    arts,
+                    and research.</li>
+                  <li><b>Maulana Abul Kalam Azad University of Technology (MAKAUT) -</b> Specializes in engineering,
+                    technology, and management (User's university).</li>
+                  <li><b>Burdwan University -</b> Known for arts, science, and commerce.</li>
+                  <li><b>North Bengal University (NBU) -</b> Major university for North Bengal.</li>
+                  <li><b>Kalyani University -</b> Research-focused university in Nadia.</li>
+                  <li><b>Rabindra Bharati University -</b> Famous for fine arts, music, drama, and culture.</li>
+                </ol>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="jadav.png" alt="" style="height:200px;width: 230px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="iitkgp.jpg" alt="" style="height:200px;width: 240px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>🔹 IITs, IIMs & Other Premier Institutes</h3>
+                <ol>
+                  <li><b>IIT Kharagpur - </b>First IIT in India (est. 1951), leading in engineering & research.</li>
+                  <li><b>IIM Calcutta -</b> India's first IIM, top-ranked for management education.</li>
+                  <li><b>Indian Statistical Institute (ISI) -</b> World-famous for statistics, mathematics, and data
+                    science.
+                  </li>
+                  <li><b>Satyajit Ray Film & Television Institute (SRFTI) -</b> Among the best in film & media studies.
+                  </li>
+                  <li><b>National Institute of Technology (NIT Durgapur) -</b> Premier engineering & technology
+                    institute.</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 Medical Colleges</h3>
+                <ol>
+                  <li><b>Calcutta Medical College -</b> India's first medical college (est. 1835).</li>
+                  <li><b>IPGMER & SSKM Hospital (Kolkata) -</b> One of the best in medical research & treatment.</li>
+                  <li><b>RG Kar Medical College & Hospital -</b> Among the oldest & most reputed.</li>
+                  <li><b>NRS Medical College -</b> Leading medical research institution.</li>
+                </ol>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="calmed.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="bckv.svg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>🔹 Law, Agriculture, & Other Institutes</h3>
+                <ul>
+                  <li><b>West Bengal National University of Juridical Sciences (NUJS) -</b> Top-ranked law university in
+                    India.
+                  </li>
+                  <li><b>Bidhan Chandra Krishi Viswavidyalaya (BCKV) -</b> Premier agricultural university in Bengal.
+                  </li>
+                  <li><b>Uttar Banga Krishi Viswavidyalaya -</b> Focuses on agriculture & farming research in North
+                    Bengal.
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <h2>🏫 School Education in West Bengal </h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+
+                <h3>🔹 Major School Boards</h3>
+                <ol>
+                  <li><b>WBBSE (West Bengal Board of Secondary Education) -</b> Conducts Madhyamik (10th) exams.</li>
+                  <li><b>WBCHSE (West Bengal Council of Higher Secondary Education) -</b> Conducts Higher Secondary
+                    (12th)
+                    exams.</li>
+                  <li><b>ICSE, CBSE & Kendriya Vidyalaya & Army School -</b> English-medium schools under national
+                    curriculum.
+                  </li>
+                  <li><b>West Bengal Madrasah Board -</b> Oldest Islamic education system in India.</li>
+                </ol>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="cbse.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="apsbkp.jpg" alt="" style="height:200px;width: 230px;">
+
+              </div>
+              <div class="col-sm-8">
+
+                <h3>🔹 Famous Schools in West Bengal</h3>
+                <ol>
+                  <li></b>La Martiniere for Boys & Girls (Kolkata) -</b> Among India's top-ranked schools.</li>
+                  <li></b>St. Xavier's Collegiate School -</b> Premier school for CBSE/ICSE education.</li>
+                  <li></b>South Point High School -</b> Holds records for highest student enrollments.</li>
+                  <li></b>Don Bosco Schools (Park Circus, Liluah, Bandel) -</b> Top-rated for discipline & academics.
+                  </li>
+                  <li></b>Loreto House & Modern High School -</b> Leading girls; schools.</li>
+                  <li></b>Army Public School Barrackpore -</b> Among India's top-ranked CBSE schools.</li>
+                </ol>
+
+              </div>
+
+            </div>
+          </div>
+          <h2>🔬 Research & Technological Advancements</h2>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <p>West Bengal is home to pioneering research institutions in science, technology, and medical fields:
+                </p>
+                <ol>
+                  <li><b>Saha Institute of Nuclear Physics (SINP) -</b> Advanced physics & nuclear research.</li>
+                  <li><b>CSIR-Indian Institute of Chemical Biology (IICB) -</b> Biotechnology & pharmaceutical research.
+                  </li>
+                  <li><b>Indian Association for the Cultivation of Science (IACS) -</b> Nobel-winning research in
+                    chemistry &
+                    physics.</li>
+                </ol>
+
+              </div>
+              <div class="col-sm-4">
+                <img src="csir.jpg" alt="" style="height:200px;width: 200px;">
+
+              </div>
+            </div>
+          </div><br>
+          <p>West Bengal continues to be one of India's top educational hubs, producing leaders, scholars, scientists,
+            and entrepreneurs. Whether in engineering, medicine, law, arts, or business, the state offers world-class
+            institutions.</p>
+        </div>
+        <br><br>
+
+      </div>
+
+
+    </div>
+  </div>
+  </div>
+</body>
+
+{% endblock %}
+</html>

@@ -1,0 +1,846 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+<style>
+    /* Error Message */
+    .error-message {
+        color: #dc2626;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #dc2626;
+        border-radius: 8px;
+        background-color: #fef2f2;
+    }
+
+    /* Chat Assistant Icon */
+    .chat-assistant-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: transform 0.3s;
+    }
+    .chat-assistant-icon:hover {
+        transform: scale(1.1);
+    }
+
+    /* Chat Assistant Modal */
+    .chat-assistant-modal .modal-content {
+        border-radius: 10px;
+    }
+    .chat-assistant-modal .modal-body {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .chat-assistant-message {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    .chat-assistant-message.user {
+        background-color: #e9f5ff;
+        margin-left: 20%;
+    }
+    .chat-assistant-message.bot {
+        background-color: #f1f1f1;
+        margin-right: 20%;
+    }
+
+    /* Voice Assistant Styles */
+    .voice-status {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .voice-status.listening {
+        color: #dc2626;
+    }
+    .voice-status.processing {
+        color: #f59e0b;
+    }
+    .voice-status.success {
+        color: #10b981;
+    }
+    .voice-status.error {
+        color: #dc2626;
+    }
+    
+    /* Typing indicator */
+    .typing-indicator {
+        display: inline-flex;
+        align-items: center;
+        margin: 5px 0;
+    }
+    .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 2px;
+        opacity: 0.6;
+        animation: typing 1s infinite;
+    }
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    @keyframes typing {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+</style>
+
+<!-- Include jQuery for AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+            aria-label="Slide 5"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+            <img src="{% static 'tour_1.webp' %}" class="d-block w-100" alt="Architecture">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Architecture</h3>
+                <p>Discover India's magnificent architectural wonders spanning centuries of history.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'tour_2.webp' %}" class="d-block w-100" alt="India Gate">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>India Gate</h3>
+                <p>Visit the iconic war memorial in the heart of New Delhi, a symbol of national pride.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'tour_3.webp' %}" class="d-block w-100" alt="Hawa Mahal">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Hawa Mahal</h3>
+                <p>Experience the "Palace of Winds" in Jaipur with its unique honeycomb facade.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'tour_4.jpg' %}" class="d-block w-100" alt="Taj Mahal">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Taj Mahal</h3>
+                <p>Behold the breathtaking marble mausoleum, a UNESCO World Heritage Site and symbol of eternal love.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'Mumbai.jpg' %}" class="d-block w-100" alt="Mumbai">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Mumbai</h3>
+                <p>Explore the vibrant coastal metropolis, India's financial and entertainment capital.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+{% comment %} <div class="container mt-5 chat-container">
+    <h2 class="text-center mb-4 section-heading">Your Voice Travel Assistant</h2>
+    <p class="text-center mb-4">Speak to ask about Indian tourism, destinations, or travel tips!</p>
+    
+    <div class="text-center mb-4">
+        <button type="button" id="startListening" class="btn btn-success">
+            <span class="listening-icon">🎙️</span> Start Listening
+        </button>
+        <button type="button" id="stopListening" class="btn btn-danger" disabled>
+            <span>⏹️</span> Stop Listening
+        </button>
+    </div>
+    <p id="voiceStatus" class="voice-status text-center"></p>
+
+    {% if error %}
+        <div class="error-message">{{ error }}</div>
+    {% endif %}
+
+    <div id="chat_box">
+        {% for chat in conversation_history %}
+        <div class="message">
+            <div class="user-message"><strong>You (Voice):</strong><br> {{ chat.user_input|linebreaksbr }}</div>
+            <div class="bot-message"><strong>Assistant:</strong><br> {{ chat.bot_response|safe }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Chat Assistant Icon -->
+<div class="chat-assistant-icon" data-bs-toggle="modal" data-bs-target="#chatAssistantModal">
+    <i class="bi bi-chat-dots fs-4"></i>
+</div>
+
+<!-- Chat Assistant Modal -->
+<div class="modal fade chat-assistant-modal" id="chatAssistantModal" tabindex="-1" aria-labelledby="chatAssistantModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chatAssistantModalLabel">Travel Assistant</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="assistantChatBox">
+                <div class="chat-assistant-message bot">
+                    Hello! I can answer your questions on any topic or take you to any page on the site. You can speak or type your query. For example, say "Tell me about the Taj Mahal" or "Go to AI Trip Planner".
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <!-- Text Input -->
+                    <div class="chat-input-container">
+                        <textarea id="assistantTextInput" placeholder="Type your message here..." rows="1"></textarea>
+                        <button type="button" id="assistantSendMessage" class="btn btn-primary">Send</button>
+                    </div>
+                    <!-- Voice Input -->
+                    <div class="text-center">
+                        <button type="button" id="assistantStartListening" class="btn btn-success">
+                            <span class="listening-icon">🎙️</span> Start Listening
+                        </button>
+                        <button type="button" id="assistantStopListening" class="btn btn-danger" disabled>
+                            <span>⏹️</span> Stop Listening
+                        </button>
+                        <p id="assistantVoiceStatus" class="voice-status mt-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- Voice Assistant for Main Chatbot ---
+const startListeningBtn = document.getElementById("startListening");
+const stopListeningBtn = document.getElementById("stopListening");
+const voiceStatus = document.getElementById("voiceStatus");
+let recognition;
+let isProcessing = false;
+
+// Initialize Speech Recognition
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SpeechRecognition) {
+    voiceStatus.textContent = "Error: Speech Recognition is not supported in your browser.";
+    voiceStatus.classList.add("error");
+    startListeningBtn.disabled = true;
+} else {
+    recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+        voiceStatus.textContent = "Listening...";
+        voiceStatus.classList.add("listening");
+        startListeningBtn.disabled = true;
+        stopListeningBtn.disabled = false;
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        voiceStatus.textContent = `You said: "${transcript}"`;
+        voiceStatus.classList.add("success");
+        processInput(transcript, voiceStatus, "chat_box", false, true);
+    };
+
+    recognition.onerror = (event) => {
+        voiceStatus.textContent = `Error: ${event.error}. Please try again.`;
+        voiceStatus.classList.add("error");
+        startListeningBtn.disabled = false;
+        stopListeningBtn.disabled = true;
+    };
+
+    recognition.onend = () => {
+        startListeningBtn.disabled = false;
+        stopListeningBtn.disabled = true;
+        if (!voiceStatus.classList.contains("success") && !voiceStatus.classList.contains("error")) {
+            voiceStatus.textContent = "";
+        }
+    };
+}
+
+startListeningBtn.addEventListener("click", () => {
+    if (isProcessing) return;
+    recognition.start();
+});
+
+stopListeningBtn.addEventListener("click", () => {
+    recognition.stop();
+});
+
+// --- Voice Assistant for Chat Assistant Modal ---
+const assistantStartListeningBtn = document.getElementById("assistantStartListening");
+const assistantStopListeningBtn = document.getElementById("assistantStopListening");
+const assistantVoiceStatus = document.getElementById("assistantVoiceStatus");
+let assistantRecognition;
+
+if (SpeechRecognition) {
+    assistantRecognition = new SpeechRecognition();
+    assistantRecognition.lang = "en-US";
+    assistantRecognition.interimResults = false;
+    assistantRecognition.maxAlternatives = 1;
+
+    assistantRecognition.onstart = () => {
+        assistantVoiceStatus.textContent = "Listening...";
+        assistantVoiceStatus.classList.add("listening");
+        assistantStartListeningBtn.disabled = true;
+        assistantStopListeningBtn.disabled = false;
+    };
+
+    assistantRecognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        assistantVoiceStatus.textContent = `You said: "${transcript}"`;
+        assistantVoiceStatus.classList.add("success");
+        processInput(transcript, assistantVoiceStatus, "assistantChatBox", true, true);
+    };
+
+    assistantRecognition.onerror = (event) => {
+        assistantVoiceStatus.textContent = `Error: ${event.error}. Please try again.`;
+        assistantVoiceStatus.classList.add("error");
+        assistantStartListeningBtn.disabled = false;
+        assistantStopListeningBtn.disabled = true;
+    };
+
+    assistantRecognition.onend = () => {
+        assistantStartListeningBtn.disabled = false;
+        assistantStopListeningBtn.disabled = true;
+        if (!assistantVoiceStatus.classList.contains("success") && !assistantVoiceStatus.classList.contains("error")) {
+            assistantVoiceStatus.textContent = "";
+        }
+    };
+} else {
+    assistantVoiceStatus.textContent = "Error: Speech Recognition is not supported in your browser.";
+    assistantVoiceStatus.classList.add("error");
+    assistantStartListeningBtn.disabled = true;
+}
+
+assistantStartListeningBtn.addEventListener("click", () => {
+    if (isProcessing) return;
+    assistantRecognition.start();
+});
+
+assistantStopListeningBtn.addEventListener("click", () => {
+    assistantRecognition.stop();
+});
+
+// --- Text Input for Chat Assistant Modal ---
+const assistantTextInput = document.getElementById("assistantTextInput");
+const assistantSendMessageBtn = document.getElementById("assistantSendMessage");
+
+assistantSendMessageBtn.addEventListener("click", () => {
+    const message = assistantTextInput.value.trim();
+    if (!message || isProcessing) return;
+    assistantTextInput.value = "";
+    processInput(message, assistantVoiceStatus, "assistantChatBox", true, false);
+});
+
+assistantTextInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        assistantSendMessageBtn.click();
+    }
+});
+
+// --- Process Input (Voice or Text) and Send to Backend ---
+function processInput(message, statusElement, chatBoxId, isAssistant = false, isVoice = false) {
+    if (isProcessing) return;
+    isProcessing = true;
+    statusElement.textContent = "Processing...";
+    statusElement.classList.remove("success");
+    statusElement.classList.add("processing");
+
+    const chatBox = document.getElementById(chatBoxId);
+    const messageDiv = document.createElement("div");
+    messageDiv.className = isAssistant ? "chat-assistant-message user" : "message";
+    messageDiv.innerHTML = isAssistant
+        ? `${isVoice ? '<strong>You (Voice):</strong> ' : '<strong>You (Text):</strong> '}${message}`
+        : `<div class="user-message"><strong>You (Voice):</strong><br>${message}</div>`;
+    chatBox.appendChild(messageDiv);
+    
+    // Add typing indicator
+    const typingIndicator = document.createElement("div");
+    typingIndicator.className = isAssistant ? "chat-assistant-message bot" : "bot-message";
+    typingIndicator.innerHTML = `<strong>Assistant:</strong> <div class="typing-indicator"><span></span><span></span><span></span></div>`;
+    chatBox.appendChild(typingIndicator);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    $.ajax({
+        url: "{% url 'home' %}",  // Make sure to add this URL to your urls.py
+        type: "POST",
+        contentType: "application/json",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        data: JSON.stringify({ message: message }),
+        success: function(data) {
+            // Remove typing indicator
+            chatBox.removeChild(typingIndicator);
+            
+            if (data.error) {
+                statusElement.textContent = data.error;
+                statusElement.classList.add("error");
+                const errorDiv = document.createElement("div");
+                errorDiv.className = isAssistant ? "chat-assistant-message bot" : "bot-message";
+                errorDiv.innerHTML = isAssistant
+                    ? `<strong>Assistant:</strong> ${data.error}`
+                    : `<strong>Assistant:</strong><br>${data.error}`;
+                chatBox.appendChild(errorDiv);
+            } else {
+                statusElement.textContent = "Response received!";
+                statusElement.classList.add("success");
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.className = isAssistant ? "chat-assistant-message bot" : "bot-message";
+                botMessageDiv.innerHTML = isAssistant
+                    ? `<strong>Assistant:</strong> ${data.response}`
+                    : `<strong>Assistant:</strong><br>${data.response}`;
+                chatBox.appendChild(botMessageDiv);
+
+                if (data.is_navigation && data.url) {
+                    setTimeout(() => {
+                        window.location.href = data.url;
+                    }, 1000);
+                }
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        },
+        error: function(error) {
+            // Remove typing indicator
+            chatBox.removeChild(typingIndicator);
+            
+            statusElement.textContent = "Error: Failed to connect to the server.";
+            statusElement.classList.add("error");
+            const errorDiv = document.createElement("div");
+            errorDiv.className = isAssistant ? "chat-assistant-message bot" : "bot-message";
+            errorDiv.innerHTML = isAssistant
+                ? `<strong>Assistant:</strong> Failed to connect to the server.`
+                : `<strong>Assistant:</strong><br>Failed to connect to the server.`;
+            chatBox.appendChild(errorDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        },
+        complete: function() {
+            isProcessing = false;
+        }
+    });
+}
+
+// --- Page Load and Animations ---
+window.onload = function () {
+    const chatBox = document.getElementById("chat_box");
+    if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-heading').forEach(heading => {
+        observer.observe(heading);
+    });
+    
+    document.querySelectorAll('.card').forEach(card => {
+        observer.observe(card);
+    });
+});
+
+// --- News Updates ---
+function fetchNewsUpdates() {
+    $.ajax({
+        url: "{% url 'get_news_updates' %}",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            let newsContainer = $("#news-container");
+            newsContainer.empty();
+
+            data.news_articles.forEach(article => {
+                let newsCard = `
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="overflow-hidden">
+                                <img src="${article.image}" class="card-img-top" alt="News Image">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">${article.title}</h5>
+                                <p class="card-text">${article.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">Published at ${article.published_at}</small><br>
+                                <a href="${article.url}" target="_blank" class="btn btn-primary btn-sm mt-2">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                newsContainer.append(newsCard);
+            });
+        },
+        error: function (error) {
+            console.log("Error fetching news:", error);
+        }
+    });
+}
+
+setInterval(fetchNewsUpdates, 60000);
+</script> {% endcomment %}
+
+<hr class="my-5">
+
+<div class="container">
+    <h2 class="text-center my-4 section-heading">Explore Dream Travels</h2>
+    <h3 class="mb-4 section-heading">Categorized based on different states</h3>
+    <p class="lead mb-4">India's dream travels span Rajasthan's royal palaces, Kerala's serene backwaters, Himachal's snowy
+        peaks, and Goa's vibrant beaches. Uttarakhand's spiritual retreats, Kashmir's heavenly valleys, and Ladakh's
+        rugged landscapes enchant explorers. Northeast's mystical beauty, Maharashtra's historical wonders, and Sikkim's
+        Himalayan charm complete an unforgettable journey across this diverse, incredible land.</p>
+    
+    <div class="text-center mb-4">
+        <a href="{% url 'clickablemap' %}" class="btn btn-primary">Explore Interactive Map</a>
+    </div>
+    
+    <div class="d-flex flex-nowrap overflow-auto pb-4">
+        <a href="{% url 'westbengal' %}" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Westbengal.jpg' %}" class="rounded destination-img" alt="West Bengal" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">West Bengal</p>
+            </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Uttarpradesh.jpg' %}" class="rounded destination-img" alt="Uttar Pradesh" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">Uttar Pradesh</p>
+            </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Mumbai.jpg' %}" class="rounded destination-img" alt="Mumbai" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">Mumbai</p>
+            </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Rajasthan.jpg' %}" class="rounded destination-img" alt="Rajasthan" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">Rajasthan</p>
+            </div>
+        </a>
+        <a href="#" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Andhrapradesh.webp' %}" class="rounded destination-img" alt="Andhra Pradesh" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">Andhra Pradesh</p>
+            </div>
+        </a>
+        <a href="{#" class="text-decoration-none">
+            <div class="text-center mx-2">
+                <img src="{% static 'Kashmir.webp' %}" class="rounded destination-img" alt="Kashmir" style="width: 30vh; height: 25vh;">
+                <p class="mt-2 fw-bold">Kashmir</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="container">
+    <h3 class="mb-4 section-heading">Explore the travel blogs of cultural tourism</h3>
+    <p class="lead mb-4">
+        Cultural tourism involves traveling to experience the heritage, traditions, and lifestyles of different
+        communities. It includes visiting historical sites, museums, festivals, and indigenous villages. This form of
+        tourism promotes cultural exchange, preserves traditions, and boosts local economies. It offers travelers a
+        deeper understanding of diverse cultures and their significance.
+    </p>
+    
+    <div class="text-center mb-4">
+        <button type="button" class="btn btn-primary">Read More</button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'agrafort.jpg' %}" class="card-img-top" alt="Agra Fort">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Agra Fort</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttar Pradesh</h6>
+                    <p class="card-text">The Agra Fort is a historical fort in the city of Agra, also known as
+                        Agra's Red Fort. Mughal emperor Humayun was crowned at this fort in 1530.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'shivaji.jpg' %}" class="card-img-top" alt="Chhatrapati Shivaji Maharaj Terminus">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Chhatrapati Shivaji Maharaj Terminus</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Maharashtra</h6>
+                    <p class="card-text">Chhatrapati Shivaji Terminus, is a historic railway terminus and UNESCO
+                        World Heritage Site in Mumbai, Maharashtra, India.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'tajmahal.jpg' %}" class="card-img-top" alt="Taj Mahal">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Taj Mahal</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttarpradesh</h6>
+                    <p class="card-text">The Taj Mahal is an ivory-white marble mausoleum on the right bank of
+                        the river Yamuna in Agra, Uttar Pradesh, India</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'Chittorgarhfort.jpg' %}" class="card-img-top" alt="Chittorgarh Fort">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Chittorgarh Fort</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Rajasthan</h6>
+                    <p class="card-text">Chittorgarh, also known as Chittod Fort, was the capital of Mewar and
+                        is located in the present-day city of Chittorgarh.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="container">
+    <h3 class="mb-4 section-heading">Explore the travel blogs of religious tourism</h3>
+    <p class="lead mb-4">
+        Religious tourism involves traveling to sacred sites, temples, churches, mosques, or pilgrimage destinations for
+        spiritual and cultural enrichment. It fosters faith, personal reflection, and a deeper connection to religious
+        heritage. Popular destinations include Varanasi, Mecca, Vatican City, and Jerusalem. This form of tourism also
+        boosts local economies and promotes intercultural understanding.
+    </p>
+    
+    <div class="text-center mb-4">
+        <button type="button" class="btn btn-primary">Read More</button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'varanasi.avif' %}" class="card-img-top" alt="Varanasi">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Varanasi</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttar Pradesh</h6>
+                    <p class="card-text">Varanasi is a city in the northern Indian state of Uttar Pradesh dating
+                        to the 11th century B.C. Regarded as the spiritual capital of India.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'rameshwaram.avif' %}" class="card-img-top" alt="Rameswaram">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Rameswaram</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Tamil Nadu</h6>
+                    <p class="card-text">Rameswaram is a town on Pamban Island, in the southeast Indian state of
+                        Tamil Nadu. It's known for Ramanathaswamy Temple, a Hindu pilgrimage site with ornate
+                        corridors.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'Vaishno_Devi.jpg' %}" class="card-img-top" alt="Vaishno Devi">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Vaishno Devi</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Jammu and Kashmir</h6>
+                    <p class="card-text">Vaishno Devi is worshipped as a combined avatar of the goddesses
+                        Mahakali, Mahalakshmi, and Mahasarasvati.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'badrinath.avif' %}" class="card-img-top" alt="Badrinath">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Badrinath</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttarkhand</h6>
+                    <p class="card-text">Badrinath is a town and nagar panchayat in Chamoli district in the
+                        state of Uttarakhand, India. It is a Hindu holy place, and is one of the four sites in India's
+                        Char Dham pilgrimage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="container">
+    <h3 class="mb-4 section-heading">Explore the travel blogs of adventurous tourism</h3>
+    <p class="lead mb-4">
+        Adventurous tourism offers thrilling experiences like trekking, rafting, and skydiving in exotic locations. It
+        attracts thrill-seekers who enjoy exploring nature, challenging terrains, and extreme sports. Popular
+        destinations include mountains, forests, deserts, and deep seas. This type of tourism promotes adrenaline-fueled activities
+        while fostering a deep connection with nature.
+    </p>
+    
+    <div class="text-center mb-4">
+        <button type="button" class="btn btn-primary">Read More</button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'paragliding.jpg' %}" class="card-img-top" alt="Paragliding, Bir Billing">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Paragliding, Bir Billing</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Himachal Pradesh</h6>
+                    <p class="card-text">Bir Billing in Himachal Pradesh is a hotspot for adventurers. The
+                        village is known for hosting the international paragliding world cup championship!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'trekking.webp' %}" class="card-img-top" alt="Trekking">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Trekking</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttarakhand</h6>
+                    <p class="card-text">The hill state of India, Uttarakhand is a paradise for ardent trekkers.
+                        Some of the most prominent treks include Chopta-Chandrashila Trek, Kedarkantha Trek, Roopkund Trek and
+                        Valley of Flowers Trek, among others.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{% static 'bungijump.avif' %}" class="card-img-top" alt="Bungee Jumping, Rishikesh">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Bungee Jumping, Rishikesh</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Uttarakhand</h6>
+                    <p class="card-text">Bungee jumping in Rishikesh, Uttarakhand, offers India's highest jump
+                        (83m), thrilling freefall, scenic views, and an unforgettable adrenaline-pumping
+                        adventure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h3 class="mb-4 section-heading">Latest Tourism News in India</h3>
+    
+    <div id="news-container" class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+        {% for article in news_articles %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="overflow-hidden">
+                    <img src="{{ article.image }}" class="card-img-top" alt="News Image">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text">{{ article.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Published at {{ article.published_at }}</small><br>
+                    <a href="{{ article.url }}" target="_blank" class="btn btn-primary btn-sm mt-2">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="text-center mb-5">
+        <a href="https://timesofindia.indiatimes.com/india" class="btn btn-primary" style="color: white;">Read More News</a>
+    </div>
+</div>
+
+
+<!-- Footer Section -->
+<footer class="text-white text-center py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="mb-3">Contact Information</h5>
+                <p>Email: <a href="mailto:example@example.com" class="text-white">example@example.com</a></p>
+                <p>Phone: <a href="tel:+1234567890" class="text-white">+1 234 567 890</a></p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="mb-3">Follow Us</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://facebook.com" class="text-white" target="_blank">
+                        <i class="bi bi-facebook fs-4"></i>
+                    </a>
+                    <a href="https://twitter.com" class="text-white" target="_blank">
+                        <i class="bi bi-twitter fs-4"></i>
+                    </a>
+                    <a href="https://instagram.com" class="text-white" target="_blank">
+                        <i class="bi bi-instagram fs-4"></i>
+                    </a>
+                    <a href="https://linkedin.com" class="text-white" target="_blank">
+                        <i class="bi bi-linkedin fs-4"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="mb-3">About Us</h5>
+                <p>We are a travel agency dedicated to exploring the hidden gems of India.</p>
+            </div>
+        </div>
+    </div>
+    <div class="py-3 mt-4">
+        <p class="mb-0">&copy; 2025 Travel Website. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+{% endblock %}
